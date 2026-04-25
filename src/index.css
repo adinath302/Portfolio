@@ -1,0 +1,121 @@
+@import 'tailwindcss';
+
+/* index.css */
+:root {
+  --bg-color: #ffffff; /* Default: White */
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+* {
+  scroll-margin-top: 80px;
+}
+
+body {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-color);
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.8, 1);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--flash-bg, transparent);
+  border-radius: 50%;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.8;
+  animation: ripple 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  backdrop-filter: blur(1px);
+  box-shadow: 0 0 50px var(--new-bg, transparent);
+}
+
+@keyframes ripple {
+  0% { 
+    transform: scale(0.8); 
+    opacity: 1; 
+  }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+
+
+.q1 {
+  font-family: sans-serif;
+  font-weight: 900;
+}
+.q2 {
+  font-family: sans-serif;
+  font-weight: 400;
+}
+.p1 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideUp {
+  animation: slideUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes bounceSlow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounceSlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseSlow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulseSlow 2s ease-in-out infinite;
+}
+
+.bb{
+  font-size:17px;
+  font-weight: 300;
+  line-height: 1.5;
+  letter-spacing: 0.2px;
+  word-spacing: 1.5px;
+}  
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
