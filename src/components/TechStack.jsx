@@ -27,7 +27,8 @@ const TechStack = () => {
 
   return (
     <section className="px-6 mt-10.5 mb-0 ">
-      <motion.h2 initial={{ opacity: 0, y: '-50px' }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className={`mb-3 ${theme ? 'text-black' : 'text-white'} text-start`}>Tech Stack</motion.h2>
+      <motion.h2 initial={{ opacity: 0, y: '-50px' }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className={`mb-6 ${theme ? 'text-black' : 'text-white'} text-start`}>Tools that I have used
+      </motion.h2>
       <AnimatePresence mode='wait'>
         <motion.div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-11 gap-4 max-w-5xl mx-auto">
           {techStack.map((tech, index) => {

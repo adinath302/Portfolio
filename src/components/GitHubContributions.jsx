@@ -16,7 +16,7 @@ const GitHubContributions = () => {
   const theme = PortfolioStore((state) => state.theme);
   return (
     <div className='px-6 mt-10.5 lg:mt-'>
-      <div className={`${theme ? 'text-black' : 'text-white'} mb-4`}>Github Contributions</div>
+      {/* <div className={`${theme ? 'text-black' : 'text-white'} mb-4`}>Github Contributions</div> */}
 
       <GitHubCalendar
         username="adinath302"
