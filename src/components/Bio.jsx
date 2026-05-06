@@ -11,7 +11,7 @@ const Bio = () => {
   const accentColor = 'text-green-500';
 
   return (
-    <section className="px-8 md:px-12 py-6 max-w-3xl">
+    <section className="px-8 md:px-12 py- max-w-3xl">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -26,15 +26,11 @@ const Bio = () => {
         {/* Clean, readable paragraph */}
         <div className={`text-[16px] leading-[1.7] ${textColor} font-normal`}>
           <p className="mb-4">
-            I am a <span className={`font-medium ${headingColor}`}>Front-end Developer</span> focused on building high-performance web applications. My expertise lies in <span className={`font-medium ${headingColor}`}>React</span> and modern JavaScript, where I bridge the gap between complex backend logic and intuitive user interfaces.
-          </p>
-
-          <p className="mb-4">
-            I specialize in clean architecture and scalable code. Rather than just building features, I focus on solving real-world problems through production-level projects and industry best practices.
+            I turn complex ideas into scalable, polished products. I don't just ship features; I engineer systems. Using <span className={`font-medium ${headingColor}`}>Next.js</span> and <span className={`font-medium ${headingColor}`}>TypeScript</span>, I build rock-solid frontends that handle the heavy lifting while maintaining the high-fidelity feel that users (and investors) expect.
           </p>
 
           <p>
-            Currently, I am looking to collaborate with ambitious teams and startups to create meaningful, high-impact digital products.
+            Open to collaborating with ambitious teams and startups to create meaningful, high-impact products.
           </p>
         </div>
 

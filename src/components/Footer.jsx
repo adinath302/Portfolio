@@ -4,23 +4,47 @@ import { FaGithub, FaLinkedin, FaInstagram, FaXTwitter } from 'react-icons/fa6';
 
 const Footer = () => {
   const theme = PortfolioStore((state) => state.theme);
+
+  // Consistent color palette
+  const textColor = theme ? 'text-slate-900' : 'text-white';
+  const subTextColor = theme ? 'text-slate-500' : 'text-slate-400';
+  const borderColor = theme ? 'border-slate-100' : 'border-white/5';
+
   return (
-    <footer className='px-6 p-0 border-t border-gray-800 animate-slideUp flex flex-col items-center'>
-      <div className='flex gap-6 mb-4'>
-        <a href='https://github.com/adinath302' target='_blank' rel='noopener noreferrer' className={`p-3 ${theme ? "bg-white/20 hover:bg-white/30 text-black hover:text-black" : "bg-gray-900/50 hover:bg-gray-800/50 text-white hover:text-gray-200"} rounded-xl transition-all duration-300 hover:scale-110 group animate-bounce-slow`}>
-          <FaGithub className='w-5 h-5 group-hover:rotate-12 transition-transform duration-300' />
-        </a>
-        <a href='https://www.linkedin.com/in/adinath-gaware-97a68225a/' target='_blank' rel='noopener noreferrer' className={`p-3 ${theme ? "bg-white/20 hover:bg-white/30 text-black hover:text-black" : "bg-gray-900/50 hover:bg-gray-800/50 text-white hover:text-gray-200"} rounded-xl transition-all duration-300 hover:scale-110 group animate-pulse-slow`}>
-          <FaLinkedin className='w-5 h-5 group-hover:-rotate-12 transition-transform duration-300' />
-        </a>
-        <a href='https://instagram.com/adinath.codes' target='_blank' rel='noopener noreferrer' className={`p-3 ${theme ? "bg-white/20 hover:bg-white/30 text-black hover:text-black" : "bg-gray-900/50 hover:bg-gray-800/50 text-white hover:text-gray-200"} rounded-xl transition-all duration-300 hover:scale-110 group animate-bounce-slow`}>
-          <FaInstagram className='w-5 h-5 group-hover:rotate-12 transition-transform duration-300' />
-        </a>
-        <a href='https://x.com/Adinath302' target='_blank' rel='noopener noreferrer' className={`p-3 ${theme ? "bg-white/20 hover:bg-white/30 text-black hover:text-black" : "bg-gray-900/50 hover:bg-gray-800/50 text-white hover:text-gray-200"} rounded-xl transition-all duration-300 hover:scale-110 group animate-pulse-slow`}>
-          <FaXTwitter className='w-5 h-5 group-hover:-rotate-12 transition-transform duration-300' />
-        </a>
+    <footer className={`max-w-5xl mx-auto px-8 md:px-12 py-8 border-t ${borderColor}`}>
+      <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+        
+        {/* Left Side: Copyright & Tech */}
+        <div className="flex flex-col items-center md:items-start space-y-1">
+          <p className={`text-[14px] font-medium ${textColor}`}>
+            © 2026 Adinath Gaware
+          </p>
+          <p className={`text-[12px] ${subTextColor}`}>
+            Built with React & Tailwind CSS
+          </p>
+        </div>
+
+        {/* Right Side: Social Links - Minimalist style */}
+        <div className="flex gap-6">
+          <a href="https://github.com/adinath302" target="_blank" rel="noreferrer" 
+             className={`${subTextColor} hover:${textColor} transition-colors duration-300`}>
+            <FaGithub className="w-5 h-5" />
+          </a>
+          <a href="https://linkedin.com/in/adinath-gaware-97a68225a/" target="_blank" rel="noreferrer" 
+             className={`${subTextColor} hover:${textColor} transition-colors duration-300`}>
+            <FaLinkedin className="w-5 h-5" />
+          </a>
+          <a href="https://instagram.com/adinath.codes" target="_blank" rel="noreferrer" 
+             className={`${subTextColor} hover:${textColor} transition-colors duration-300`}>
+            <FaInstagram className="w-5 h-5" />
+          </a>
+          <a href="https://x.com/Adinath302" target="_blank" rel="noreferrer" 
+             className={`${subTextColor} hover:${textColor} transition-colors duration-300`}>
+            <FaXTwitter className="w-5 h-5" />
+          </a>
+        </div>
+
       </div>
-      <p className={`${theme ? 'text-black' : 'text-white'} text-center text-sm animate-pulse`}>© 2026 Adinath Gaware. Built with React & Tailwind.</p>
     </footer>
   );
 };

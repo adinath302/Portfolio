@@ -1,23 +1,42 @@
-import React from 'react'
+import React from 'react';
+import PortfolioStore from './useStore';
+import { motion } from 'framer-motion';
 
-const Quote = ({ theme }) => {
-    return (
-        <section className='px-6 mt-8 mb-0'>
-            <div
-                className={`max-w-3xl mx-auto rounded-xl border backdrop-blur-md p-4 transition-colors ${theme
-                    ? 'border-gray-800/30 bg-white/40'
-                    : 'border-gray-700/40 bg-black/20'
-                    }`}
-            >
-                <p className={`text-[14px] leading-[1.7] tracking-wide ${theme ? 'text-gray-900' : 'text-white'}`}>
-                    “By believing in something that still does not exist, we create it.”
-                    <span className={`block mt-1 text-xs font-light ${theme ? 'text-gray-600' : 'text-gray-300'}`}>
-                        ~ Franz Kafka
-                    </span>
-                </p>
-            </div>
-        </section>
-    )
-}
+const Quote = () => {
+  const theme = PortfolioStore((state) => state.theme);
 
-export default Quote
+  // Using the same standardized colors and alignment as your Bio and TechStack
+  const textColor = theme ? 'text-slate-600' : 'text-slate-400';
+  const authorColor = theme ? 'text-slate-900' : 'text-slate-200';
+
+  return (
+    <section className="max-w-5xl mx-auto px-8 md:px-12 py-">
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+        className="max-w-2xl"
+      >
+        {/* Simple Label consistent with other sections */}
+        <h2 className="text-[12px] font-bold uppercase tracking-widest text-green-500 mb-4">
+          Perspective
+        </h2>
+
+        <figure className="space-y-2">
+          <blockquote className={`text-[17px] italic leading-relaxed font-light ${textColor}`}>
+            “By believing in something that still does not exist, we create it.”
+          </blockquote>
+          <figcaption className={`text-[13px] font-medium uppercase tracking-wider ${authorColor}`}>
+            — Franz Kafka
+          </figcaption>
+        </figure>
+
+        {/* Minimalist divider line to close the section */}
+        <div className={`mt-8 w-12 h-[1px] ${theme ? 'bg-slate-200' : 'bg-white/10'}`} />
+      </motion.div>
+    </section>
+  );
+};
+
+export default Quote;

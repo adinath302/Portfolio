@@ -2,39 +2,35 @@ import React from 'react';
 import profile from '../assets/profile.jpg';
 
 const ProfileName = ({ theme }) => {
-  // Define colors based on theme for cleaner JSX
+  // Using the same subtle colors from your Bio UI
   const textColor = theme ? 'text-slate-900' : 'text-white';
-  const subTextColor = theme ? 'text-slate-600' : 'text-slate-300';
-  const borderColor = theme ? 'border-green-500' : 'border-slate-700';
+  const subTextColor = theme ? 'text-slate-500' : 'text-slate-400';
 
   return (
-    <section className="flex flex-col px-6 md:px-12 pt-24 pb-8">
-      <div className="flex items-center gap-6">
-        {/* Profile Image Container */}
-        <div className="relative">
-          <img
-            src={profile}
-            alt="Adinath Gaware"
-            className={`select-none rounded-full h-24 w-24 object-cover border-4 shadow-lg transition-colors duration-300 ${borderColor}`}
-          />
-          {/* Optional: Small status indicator dot */}
-          <span className="absolute bottom-1 right-1 block h-4 w-4 rounded-full bg-green-500 border-2 border-white"></span>
-        </div>
+    <section className="px-8 md:px-12 pt-32 pb-6">
+      <div className="flex items-center gap-5">
+        {/* Simple, clean circular image without heavy borders */}
+        <img
+          src={profile}
+          alt="Adinath Gaware"
+          className="h-20 w-20 rounded-full object-cover select-none grayscale-[20%]"
+        />
 
-        {/* Text Content */}
-        <div className="flex flex-col justify-center">
-          <h1 className={`font-bold text-4xl tracking-tight mb-1 transition-colors duration-300 ${textColor}`}>
+        {/* Minimalist Text Stack */}
+        <div className="flex flex-col">
+          <h1 className={`text-2xl font-bold tracking-tight ${textColor}`}>
             Adinath Gaware
           </h1>
-          <div className={`text-xl font-medium tracking-wide transition-colors duration-300 ${subTextColor}`}>
-            Full-stack Developer
-          </div>
+          <p className={`text-[16px] font-normal ${subTextColor}`}>
+            Front-end Developer
+          </p>
           
-          {/* Subtle location or availability tag */}
-          <div className="flex items-center mt-2">
-             <span className={`text-sm px-3 py-1 rounded-full border ${theme ? 'bg-slate-100 border-slate-200' : 'bg-slate-800 border-slate-700'} ${subTextColor}`}>
-               Available for opportunities
-             </span>
+          {/* Very simple availability indicator - no background box */}
+          <div className="flex items-center gap-2 mt-1">
+            <div className="h-1.5 w-1.5 rounded-full bg-green-500" />
+            <span className={`text-[13px] font-medium uppercase tracking-wider ${subTextColor}`}>
+              Available
+            </span>
           </div>
         </div>
       </div>
