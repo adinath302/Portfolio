@@ -5,8 +5,9 @@ import Bio from '../components/Bio.jsx';
 import Navbar from './Navbar';
 import GitHubContributions from './GitHubContributions';
 import PortfolioStore from './useStore';
-import ProfileImage from './ProfileImage.jsx';
+import ProfileImage from './Profile_Name.jsx';
 import profile from '../assets/profile.jpg'
+import Quote from './Quote.jsx';
 
 const Profile = () => {
     const theme = PortfolioStore((state) => state.theme);
@@ -26,6 +27,10 @@ const Profile = () => {
             {/* bio */}
             <Bio />
 
+            {/* quote */}
+           <Quote theme={theme} />
+
+
             {/* Tech stack */}
             <TechStack />
 
@@ -34,7 +39,7 @@ const Profile = () => {
 
             {/* Projects */}
             <section className='px-6 mt-10.5 mb-2'>
-                <h2 className={`${theme ? 'text-black' : 'text-white'} text-start mb-4 text-2xl`}>Projects</h2>
+                <h2 className={`font-bold ${theme ? 'text-black' : 'text-white'} text-start mb-4 text-2xl`}>Projects</h2>
                 <div className='text-center py-20'>
                     <h3 className={`${theme ? 'text-gray-600' : 'text-gray-400'} text-lg`}>Exciting projects in the works!</h3>
                     <p className={`${theme ? 'text-gray-600' : 'text-gray-400'} text-lg`}>Coming Soon</p>

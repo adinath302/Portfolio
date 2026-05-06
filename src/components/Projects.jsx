@@ -35,7 +35,7 @@ const Projects = () => {
   const theme = PortfolioStore((state) => state.theme);
   return (
     <section className='px-6 mt-10.5 mb-2'>
-      <h2 className='text-start mb-4 text-black text-sm! font-light'>Projects</h2>
+className={`font-bold text-left text-sm mb-4 ${theme ? 'text-black' : 'text-white'}`}
       <div className='grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-3xl mx-auto'>
         {projects.map((project, index) => (
           <div key={index} className='group bg-gray-900/20 backdrop-blur-md rounded-lg border border-gray-800/30 hover:border-cyan-400/50 transition-all duration-300 hover:scale-[1.01]'>

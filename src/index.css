@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import url(https://fonts.bunny.net/css?family=aboreto:400);
 
 /* index.css */
 :root {
@@ -41,14 +42,15 @@ body::before {
 }
 
 @keyframes ripple {
-  0% { 
-    transform: scale(0.8); 
-    opacity: 1; 
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
   }
-  100% { opacity: 0; transform: scale(1); }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
 }
-
-
 
 .q1 {
   font-family: sans-serif;
@@ -106,16 +108,20 @@ body::before {
   animation: pulseSlow 2s ease-in-out infinite;
 }
 
-.bb{
-  font-size:17px;
+.bb {
+  font-size: 17px;
   font-weight: 300;
   line-height: 1.5;
   letter-spacing: 0.2px;
   word-spacing: 1.5px;
-}  
+}
 
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
+}
+.Heading_font {
+  font-family: 'Abhaya Libre', serif;
+  font-weight: 500;
 }
