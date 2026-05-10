@@ -1,6 +1,8 @@
 import React from 'react';
 import { FaReact, FaHtml5, FaCss3Alt, FaDatabase, FaStore } from 'react-icons/fa6';
 import { SiVite, SiTypescript, SiTailwindcss, SiGsap, SiJavascript, SiFramer, SiNextdotjs } from 'react-icons/si';
+import { SiPrisma } from 'react-icons/si';
+
 import PortfolioStore from './useStore.jsx';
 
 const TechIcons = () => {
@@ -18,7 +20,9 @@ const TechIcons = () => {
     { name: 'Framer Motion', icon: SiFramer, iconColor: 'text-[#0055FF] group-hover:text-[#0055FF]/90 duration-200', textColor: 'text-black dark:text-white group-hover:text-gray-800 animate-pulse opacity-100 duration-500', url: 'https://www.framer.com/motion' },
     { name: 'HTML', icon: FaHtml5, iconColor: 'text-[#E34F26] group-hover:text-[#E34F26]/90 duration-200', textColor: 'text-black dark:text-white group-hover:text-gray-800 animate-pulse opacity-100 duration-500', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML' },
     { name: 'CSS', icon: FaCss3Alt, iconColor: 'text-[#1572B6] group-hover:text-[#1572B6]/90 duration-200', textColor: 'text-black dark:text-white group-hover:text-gray-800 animate-pulse opacity-100 duration-500', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS' },
+    { name: 'Prisma', icon: SiPrisma, iconColor: 'text-[#2D3748] group-hover:text-[#2D3748]/90 duration-200', textColor: 'text-black dark:text-white group-hover:text-gray-800 animate-pulse opacity-100 duration-500', url: 'https://www.prisma.io/' },
   ];
+
   return techData;
 };
 

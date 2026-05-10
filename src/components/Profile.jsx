@@ -10,6 +10,7 @@ import profile from '../assets/profile.jpg'
 import Quote from './Quote.jsx';
 import { motion } from 'framer-motion';
 import Contact from './Contact_Us.jsx';
+import Projects from './Projects.jsx';
 
 const Profile = () => {
     const theme = PortfolioStore((state) => state.theme);
@@ -53,7 +54,8 @@ const Profile = () => {
                     <p className={`${theme ? 'text-gray-600' : 'text-gray-400'} text-lg`}>Coming Soon</p>
                 </div>
             </section>
-
+            <Projects />
+            
             {/* Contact us  */}
             <Contact />
 
