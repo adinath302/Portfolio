@@ -9,8 +9,8 @@ import PortfolioStore from './useStore';
 const AnimatedThemeToggler = ({ className, duration = 400, ...props }) => {
   const theme = PortfolioStore((state) => state.theme);
   const toggle = PortfolioStore((state) => state.toggle);
-  const isDark = !theme;
   const buttonRef = useRef(null);
+
 
   const playToggleSound = () => {
     const audio = new Audio('/src/assets/click_sound.mp3');

@@ -1,69 +1,59 @@
-import React from 'react'
-import TechStack from './TechStack';
-import Footer from './Footer';
-import Bio from '../components/Bio.jsx';
+import React from 'react';
 import Navbar from './Navbar';
-import GitHubContributions from './GitHubContributions';
-import PortfolioStore from './useStore';
 import ProfileImage from './Profile_Name.jsx';
-import profile from '../assets/profile.jpg'
-import Quote from './Quote.jsx';
-import { motion } from 'framer-motion';
-import Contact from './Contact_Us.jsx';
+import Bio from '../components/Bio.jsx';
+import TechStack from './TechStack';
+import GitHubContributions from './GitHubContributions';
 import Projects from './Projects.jsx';
+import Contact from './Contact_Us.jsx';
+import Footer from './Footer';
+import PortfolioStore from './useStore';
 
 const Profile = () => {
-    const theme = PortfolioStore((state) => state.theme);
+  const theme = PortfolioStore((state) => state.theme);
 
-    return (
-        <>
-            {/* <div className='mr-4'>
-                <img src={profile} alt="" className={`-z-10 select-none h-83 w-full rounded-xl object-cover`} />
-            </div> */}
+  // Global background rules to ensure the full viewport shifts cleanly
+  const pageBg = theme ? 'bg-white text-slate-900' : 'bg-[#121212] text-slate-100';
 
-            {/* Navbar is rendered here but progress bar is now in Navbar */}
-            <Navbar />
+  return (
+    <div className={`min-h-screen w-full transition-colors duration-500 ${pageBg}`}>
+      {/* 
+        Fixed Navbar floating safely above content 
+      */}
+      <Navbar />
 
-            {/* profile image */}
-            <ProfileImage theme={theme} />
+      {/* 
+        Global Layout Wrapper:
+        This creates a continuous vertical structural column.
+        By isolating max-width properties here, all child elements are guaranteed 
+        to snap to the exact same vertical left/right grid lines.
+      */}
+      <main className="w-full space-y-0">
+        
+        {/* Profile Identity Intro */}
+        <ProfileImage theme={theme} />
 
-            {/* bio */}
-            <Bio />
+        {/* About / Bio Copy */}
+        <Bio />
 
-            {/* quote */}
-            {/* <Quote theme={theme} /> */}
+        {/* Tech Stack Component */}
+        <TechStack />
 
-            {/* Tech stack */}
-            <TechStack />
+        {/* Open Source Metrics */}
+        <GitHubContributions />
 
-            {/* github contribution */}
-            <GitHubContributions />
+        {/* Work / Engineering Projects */}
+        <Projects />
+        
+        {/* Communication Form Block */}
+        <Contact />
 
-            {/* Projects */}
-            <section className='px-8 md:px-12 mt-12 mb-2'>
-                <motion.h2
-                    initial={{ opacity: 0, y: '-50px' }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className={`text-[12px] mb-7 font-bold uppercase tracking-widest text-green-500 ${theme ? 'text-black' : 'text-white'}`}
-                >
-                    Projects
-                </motion.h2>
-                <div className='text-center py-20'>
-                    <h3 className={`${theme ? 'text-gray-600' : 'text-gray-400'} text-lg`}>Exciting projects in the works!</h3>
-                    <p className={`${theme ? 'text-gray-600' : 'text-gray-400'} text-lg`}>Coming Soon</p>
-                </div>
-            </section>
-            <Projects />
-            
-            {/* Contact us  */}
-            <Contact />
+      </main>
 
-            {/* footer */}
-            <Footer />
-        </>
-    )
-}
+      {/* Structural Footer */}
+      <Footer />
+    </div>
+  );
+};
 
 export default Profile;
-

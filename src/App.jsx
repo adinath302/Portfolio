@@ -21,6 +21,8 @@ const App = () => {
 }
 
 export default App;
+
+//  portfolio link* - https://www.krishx.dev/   -- tech stack ui   
 //  portfolio link* - https://akshad-work.vercel.app/ -- for experience section ui 
 //  portfolio link* - https://ramx.in/ 
 //  portfolio link  - https://ayushworks.com/  -- for project section ui 

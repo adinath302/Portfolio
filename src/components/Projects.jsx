@@ -1,97 +1,125 @@
 import React from 'react';
 import PortfolioStore from './useStore';
-import { FiExternalLink, FiGithub } from 'react-icons/fi'; // Clean line icons matching the image
+import { FiExternalLink, FiGithub } from 'react-icons/fi';
 
 const Projects = () => {
   const theme = PortfolioStore((state) => state.theme);
 
-  // Colors matching the screenshot's high-contrast minimalist look
-  const textColor = theme ? 'text-slate-900' : 'text-[#f2f2f2]';
-  const subTextColor = theme ? 'text-slate-600' : 'text-[#a1a1aa]'; // Muted grey for descriptions
-  const linkColor = theme ? 'text-slate-900 hover:text-slate-600' : 'text-white hover:text-gray-300';
-  const imageBg = theme ? 'bg-slate-100' : 'bg-[#111111]';
+  // Structural Theme Tokens
+  const labelColor = theme ? 'text-emerald-600' : 'text-emerald-400';
+  const textColor = theme ? 'text-slate-900' : 'text-slate-100';
+  const descriptionColor = theme ? 'text-slate-600' : 'text-slate-400';
+  const subTextColor = theme ? 'text-slate-500' : 'text-slate-400';
+  const linkColor = theme ? 'text-slate-900 hover:text-emerald-600' : 'text-white hover:text-emerald-400';
+  const cardBorder = theme ? 'border-slate-200/60' : 'border-white/5';
+  const badgeBg = theme ? 'bg-slate-100 text-slate-800' : 'bg-white/[0.04] text-slate-300';
 
   const projects = [
     {
       id: 1,
       title: 'Sub-Agents Directory',
-      tech: 'Next.js / Tailwind CSS',
-      description: 'Curated collection of Claude Code sub-agent prompts and MCP servers. Discover sub-agents, prompts and more.',
-      image: 'https://via.placeholder.com/600x400/111111/333333?text=Project+Image', // Replace with actual image path
+      tech: ['Next.js', 'Tailwind CSS', 'Claude API'],
+      description: 'Curated collection of Claude Code sub-agent prompts and MCP servers. Discover sub-agents, engineered system prompts, and custom development pipelines seamlessly.',
+      image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
       livePreview: '#',
       repoUrl: '#',
     },
     {
       id: 2,
       title: 'Codejeet',
-      tech: 'Next.js / TypeScript / Selenium / Tailwind CSS',
-      description: 'System Design and DSA learning platform with 17,000+ company-wise LeetCode questions scraped via Selenium and pSEO blogs. 345K+...',
-      image: 'https://via.placeholder.com/600x400/111111/333333?text=Project+Image', // Replace with actual image path
+      tech: ['Next.js', 'TypeScript', 'Selenium', 'pSEO'],
+      description: 'System Design and DSA learning platform featuring 17,000+ company-wise LeetCode questions scraped via automated Selenium drivers and rendered dynamically using programmatic SEO structures.',
+      image: 'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=800&q=80',
       livePreview: '#',
       repoUrl: '#',
     },
-    // Add more projects here to fill the grid
   ];
 
   return (
-    <section id="projects" className="max-w-5xl mx-auto px-8 md:px-12 py-16">
-      {/* The Serif Header from the screenshot */}
-      <h2 className={`text-2xl md:text-3xl font-serif tracking-wide mb-10 ${textColor}`}>
-        Featured Projects
-      </h2>
+    // Clean max-width layout matching the global design column
+    <section id="projects" className="max-w-5xl mx-auto px-6 md:px-8 py-16 md:py-24">
+      
+      {/* Aligned Heading Label */}
+      <div className="mb-12">
+        <h2 className={`t-h-label ${labelColor} mb-2`}>
+          Featured Projects
+        </h2>
+        <p className={`t-body ${descriptionColor}`}>
+          A collection of system design platforms, open-source directories, and engineering tools.
+        </p>
+      </div>
 
-      {/* 2-Column Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-14">
+
+      {/* 2-Column Responsive Portfolio Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-16">
         {projects.map((project) => (
           <div key={project.id} className="flex flex-col group">
-            
-            {/* Project Image Container */}
-            <a href={project.livePreview} target="_blank" rel="noreferrer" className="block w-full overflow-hidden rounded-xl mb-5">
-              <div className={`aspect-[16/10] w-full ${imageBg} transition-transform duration-500 group-hover:scale-[1.02]`}>
-                <img 
-                  src={project.image} 
+
+            {/* Project Frame Box & Image Link */}
+            <a 
+              href={project.livePreview} 
+              target="_blank" 
+              rel="noreferrer" 
+              className={`block w-full overflow-hidden rounded-2xl border ${cardBorder} mb-5`}
+            >
+              <div className="aspect-[16/10] w-full overflow-hidden bg-slate-900">
+                <img
+                  src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover rounded-xl border border-white/5"
+                  loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                 />
               </div>
             </a>
 
-            {/* Project Info */}
-            <div className="flex flex-col">
-              <h3 className={`text-lg font-semibold tracking-tight ${textColor}`}>
-                {project.title}
-              </h3>
+            {/* Project Information Meta Stack */}
+            <div className="flex flex-col flex-grow space-y-3">
               
-              <p className={`text-[13px] mt-1 ${subTextColor}`}>
-                {project.tech}
-              </p>
+              <div className="space-y-1">
+                <h3 className={`text-xl font-bold tracking-tight transition-colors duration-200 ${textColor}`}>
+                  {project.title}
+                </h3>
+                
+                {/* Tech Badges Array: Replaced flat string with modular tags */}
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {project.tech.map((techItem, index) => (
+                    <span 
+                      key={index} 
+                      className={`text-[11px] font-medium px-2 py-0.5 rounded-md ${badgeBg}`}
+                    >
+                      {techItem}
+                    </span>
+                  ))}
+                </div>
+              </div>
 
-              <p className={`text-[14px] leading-relaxed mt-4 ${subTextColor}`}>
+              {/* Project Body Text */}
+              <p className={`text-sm md:text-base leading-relaxed font-normal ${descriptionColor} flex-grow`}>
                 {project.description}
               </p>
 
-              {/* Links */}
-              <div className="flex items-center gap-6 mt-5">
+              {/* Interactive Action Links */}
+              <div className="flex items-center gap-6 pt-2">
                 {project.livePreview && (
-                  <a 
-                    href={project.livePreview} 
-                    target="_blank" 
+                  <a
+                    href={project.livePreview}
+                    target="_blank"
                     rel="noreferrer"
-                    className={`flex items-center gap-2 text-[13px] font-semibold transition-colors ${linkColor}`}
+                    className={`flex items-center gap-1.5 text-xs font-semibold tracking-wide transition-colors uppercase duration-200 ${linkColor}`}
                   >
-                    <FiExternalLink className="w-4 h-4" />
+                    <FiExternalLink className="w-3.5 h-3.5" />
                     Live Preview
                   </a>
                 )}
                 {project.repoUrl && (
-                  <a 
-                    href={project.repoUrl} 
-                    target="_blank" 
+                  <a
+                    href={project.repoUrl}
+                    target="_blank"
                     rel="noreferrer"
-                    className={`flex items-center gap-2 text-[13px] font-semibold transition-colors ${linkColor}`}
+                    className={`flex items-center gap-1.5 text-xs font-semibold tracking-wide transition-colors uppercase duration-200 ${linkColor}`}
                   >
-                    <FiGithub className="w-4 h-4" />
-                    Repo Url
+                    <FiGithub className="w-3.5 h-3.5" />
+                    Codebase
                   </a>
                 )}
               </div>

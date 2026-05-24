@@ -3,83 +3,76 @@ import PortfolioStore from './useStore.jsx';
 import TechIcons from './tech-icons.jsx';
 import { motion } from 'framer-motion';
 
-
 const TechStack = () => {
   const theme = PortfolioStore((state) => state.theme);
-  // (kept for future hover UI; not used right now)
-  const [hoveredTech, setHoveredTech] = React.useState({ name: '', x: 0, y: 0 });
-
-  const handleMouseEnter = (techName, e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setHoveredTech({ name: techName, x: rect.left + rect.width / 2, y: rect.top });
-  };
-
   const techStack = TechIcons();
 
-  const tooltipBg = theme ? 'bg-black/95 text-white' : 'bg-white/95 text-gray-900';
-  const tooltipBorder = theme ? 'border border-white/15' : 'border border-gray-200/50';
-  const tooltipArrow = theme ? 'border-t-black/95' : 'border-t-white/95';
-
-  // Theme-safe colors (no reliance on nested `dark:` classes)
-  const cardBg = theme
-    ? 'bg-white/70 shadow-md'
-    : 'bg-black/20 shadow-lg'
-  const cardHoverBg = theme
-    ? 'hover:bg-white'
-    : 'hover:bg-black/35';
-  
+  const labelColor = theme ? 'text-emerald-600' : 'text-emerald-400';
+  const textColor = theme ? 'text-slate-600' : 'text-slate-400';
 
   return (
-    <section className="px-6 mt-10.5 mb-0 ">
-      {/* Simplified Header Label */}
-      <motion.h2
-        initial={{ opacity: 0, y: '-50px' }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className={`text-[14px] mb-7 font-bold uppercase tracking-widest text-green-500 ${theme ? 'text-black' : 'text-white'}`}
-      >
-        Tools that I have used
-      </motion.h2>
+    // Clean max-width matching the rest of your core system layout
+    <section id="tools" className="max-w-5xl mx-auto px-6 md:px-8 py-16 md:py-20">
+      
+      {/* Structural Header aligned perfectly to the left edge of the grid */}
+      <div className="mb-10">
+        <motion.h2
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className={`text-xs font-bold tracking-widest uppercase ${labelColor} mb-2`}
+        >
+          Tech Stack
+        </motion.h2>
+        <p className={`text-base md:text-lg ${textColor}`}>
+          Tools, languages, and frameworks I build production software with.
+        </p>
+      </div>
 
-      <div className="relative max-w-5xl mx-auto mt-2">
-        {/* Blurred corners */}
-        <div
-          aria-hidden
-          className={`pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 h-20 w-20 rounded-full blur-2xl ${theme ? 'bg-white/60' : 'bg-black/40'}`}
-        />
-        <div
-          aria-hidden
-          className={`pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 h-20 w-20 rounded-full blur-2xl ${theme ? 'bg-white/60' : 'bg-black/40'}`}
-        />
+      {/* Marquee Row Box Container */}
+      <div className="relative w-full mt-4 overflow-hidden rounded-xl">
+        
+        {/* Premium Edge Blur Vignettes (Replaced old round blur shapes with sleek transparent linear gradients) */}
+        <div className={`absolute left-0 top-0 bottom-0 w-16 sm:w-24 z-10 pointer-events-none bg-gradient-to-r ${
+          theme ? 'from-white to-transparent' : 'from-[#121212] to-transparent'
+        }`} />
+        <div className={`absolute right-0 top-0 bottom-0 w-16 sm:w-24 z-10 pointer-events-none bg-gradient-to-l ${
+          theme ? 'from-white to-transparent' : 'from-[#121212] to-transparent'
+        }`} />
 
-        <div className="overflow-hidden">
+        {/* Scrolling Strip wrapper */}
+        <div className="overflow-hidden py-4">
           <motion.div
-            className="flex items-start gap-14 px-6 py-2"
+            className="flex items-center gap-12 w-max px-6"
             style={{ willChange: 'transform' }}
-            initial={{ x: 0 }}
             animate={{ x: '-50%' }}
-            transition={{ duration: 18, ease: 'linear', repeat: Infinity }}
+            transition={{ duration: 25, ease: 'linear', repeat: Infinity }}
           >
+            {/* Duplicating the array seamlessly for infinite loop rendering */}
             {[...techStack, ...techStack].map((tech, index) => {
               const Icon = tech.icon;
               return (
-                <motion.div
-                  key={tech.name}
-                  className="w-[82px] flex flex-col items-center justify-center"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                <div
+                  key={`${tech.name}-${index}`}
+                  className="flex flex-col items-center justify-center space-y-3 min-w-[100px] group"
                 >
-                  <div
-                    className={`w-16 h-16 flex items-center justify-center  ${cardBg} ${cardHoverBg} transition-colors`}
-                  >
-                    <Icon className={`w-8 h-8 ${tech.iconColor} `} />
+                  {/* Icon Card Container */}
+                  <div className={`w-16 h-16 flex items-center justify-center rounded-2xl border transition-all duration-300 ${
+                    theme 
+                      ? 'bg-slate-50 border-slate-100 shadow-sm group-hover:bg-white group-hover:scale-105 group-hover:shadow-md' 
+                      : 'bg-white/[0.02] border-white/5 group-hover:bg-white/[0.05] group-hover:scale-105 group-hover:border-white/10'
+                  }`}>
+                    <Icon className={`w-8 h-8 transition-transform duration-300 ${tech.iconColor}`} />
                   </div>
-                  <div className={`mt-2 text-[13px] leading-tight text-center font-semibold ${theme ? 'text-slate-800' : 'text-slate-200'}`}>
+                  
+                  {/* Flexible Label Stack */}
+                  <span className={`text-xs font-medium tracking-wide whitespace-nowrap transition-colors duration-200 ${
+                    theme ? 'text-slate-700 group-hover:text-slate-900' : 'text-slate-400 group-hover:text-slate-200'
+                  }`}>
                     {tech.name}
-                  </div>
-                </motion.div>
+                  </span>
+                </div>
               );
             })}
           </motion.div>

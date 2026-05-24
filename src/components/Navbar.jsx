@@ -6,35 +6,59 @@ import { motion } from 'framer-motion';
 const Navbar = () => {
   const theme = PortfolioStore((state) => state.theme);
 
-  // Background: Soft White for Light | Deep Charcoal for Dark (Easier on eyes than pure black)
-  const navBg = theme ? 'bg-white' : 'bg-[#121212]'; 
-  const textColor = theme ? 'text-slate-900' : 'text-slate-200';
-  const borderColor = theme ? 'border-slate-200' : 'border-white/10';
+  // Layout Colors (Softened contrasts for a premium, intentional look)
+  const navBg = theme ? 'bg-white/80 backdrop-blur-md' : 'bg-[#121212]/80 backdrop-blur-md'; 
+  const textColor = theme ? 'text-slate-800' : 'text-slate-200';
+  const linkHoverColor = theme ? 'hover:text-emerald-600' : 'hover:text-emerald-400';
+  const borderColor = theme ? 'border-slate-200/60' : 'border-white/5';
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 border-b transition-colors duration-500 ${navBg} ${borderColor}`}>
-      <div className="max-w-5xl mx-auto flex h-16 items-center justify-between px-8 md:px-12">
+    <nav className={`fixed top-0 left-0 w-full z-50 border-b transition-all duration-300 ${navBg} ${borderColor}`}>
+      {/* 
+        NOTE ON ALIGNMENT: Ensure your Hero, Project, and Contact sections 
+        also share this exact same max-width and horizontal padding setup 
+        (max-w-5xl mx-auto px-6 md:px-8) so your entire site aligns perfectly.
+      */}
+      <div className="max-w-5xl mx-auto flex h-16 items-center justify-between px-6 md:px-8">
         
-        {/* Brand/Logo */}
+        {/* Brand / Logo */}
         <a 
           href="/" 
-          className={`text-sm font-bold tracking-widest uppercase transition-colors ${textColor}`}
+          className={`text-base font-bold tracking-tight transition-colors duration-200 ${textColor} hover:opacity-80`}
         >
-          adinath.codes
+          adinath<span className={theme ? 'text-emerald-600' : 'text-emerald-400'}>.codes</span>
         </a>
 
-        {/* Navigation & Toggler */}
-        <div className="flex items-center gap-8">
-          <ul className={`hidden sm:flex gap-6 text-[14px] font-semibold tracking-wide ${textColor}`}>
-            <li className="hover:text-green-500 transition-colors"><a href="#projects">Projects</a></li>
-            <li className="hover:text-green-500 transition-colors"><a href="#contact">Contact</a></li>
+        {/* Navigation Actions */}
+        <div className="flex items-center gap-6 md:gap-8">
+          <ul className={`hidden sm:flex items-center gap-6 text-sm font-medium tracking-wide ${textColor}`}>
+            <li>
+              <a 
+                href="#projects" 
+                className={`transition-colors duration-200 ${linkHoverColor}`}
+              >
+                Projects
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#contact" 
+                className={`transition-colors duration-200 ${linkHoverColor}`}
+              >
+                Contact
+              </a>
+            </li>
           </ul>
 
-          {/* Simple Divider */}
+          {/* Minimalist Visual Divider */}
           <div className={`h-4 w-[1px] hidden sm:block ${theme ? 'bg-slate-200' : 'bg-white/10'}`} />
 
-          <AnimatedThemeToggler />
+          {/* Interactive Toggle Target */}
+          <div className="flex items-center justify-center min-w-[24px] min-h-[24px]">
+            <AnimatedThemeToggler />
+          </div>
         </div>
+
       </div>
     </nav> 
   );
