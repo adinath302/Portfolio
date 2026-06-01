@@ -17,28 +17,27 @@ const Footer = () => {
 
   const socialLinks = [
     { id: 'github', url: 'https://github.com/adinath302', icon: FaGithub },
-    { id: 'linkedin', url: 'https://linkedin.com/in/adinath-gaware-97a68225a/', icon: FaLinkedin },
+    {
+      id: 'linkedin',
+      url: 'https://linkedin.com/in/adinath-gaware-97a68225a/',
+      icon: FaLinkedin,
+    },
     { id: 'instagram', url: 'https://instagram.com/adinath.codes', icon: FaInstagram },
     { id: 'twitter', url: 'https://x.com/Adinath302', icon: FaXTwitter },
   ];
 
   return (
-    // Fixed container edge alignments
     <footer className={`max-w-5xl mx-auto px-6 md:px-8 py-8 md:py-12 border-t ${borderColor}`}>
       <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
-
         {/* Left Side: Professional Metadata */}
         <div className="flex flex-col items-center sm:items-start space-y-1 text-center sm:text-left">
-          <p className={`t-small font-semibold tracking-tight ${textColor}`}>
-            © 2026 Adinath Gaware
-          </p>
+          <p className={`t-small font-semibold tracking-tight ${textColor}`}>© 2026 Adinath Gaware</p>
           <p className={`t-caption ${subTextColor} font-normal`}>
             Engineered with React & Tailwind CSS
           </p>
-
         </div>
 
-        {/* Right Side: Map-Driven Social Elements */}
+        {/* Right Side: Social Icons */}
         <div className="flex items-center gap-5">
           {socialLinks.map((social) => {
             const Icon = social.icon;
@@ -47,7 +46,7 @@ const Footer = () => {
                 key={social.id}
                 href={social.url}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className={`transition-colors duration-200 ${iconLinkColor}`}
               >
                 <Icon className="w-[18px] h-[18px]" />
@@ -55,10 +54,10 @@ const Footer = () => {
             );
           })}
         </div>
-
       </div>
     </footer>
   );
 };
 
 export default Footer;
+

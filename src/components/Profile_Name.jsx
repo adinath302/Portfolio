@@ -22,7 +22,7 @@ const ProfileName = ({ theme }) => {
           {/* Status Ping Indicator positioned right over the avatar */}
           <span className="absolute bottom-1 right-1 flex h-3.5 w-3.5 rounded-full bg-emerald-500 ring-2 ring-current text-white animate-pulse" />
         </div>
-
+ 
         {/* Typographic Text Stack */}
         <div className="space-y-1">
           <h1 className={`text-2xl sm:text-3xl font-bold tracking-tight ${textColor}`}>

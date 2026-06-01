@@ -7,7 +7,11 @@ const Navbar = () => {
   const theme = PortfolioStore((state) => state.theme);
 
   // Layout Colors (Softened contrasts for a premium, intentional look)
-  const navBg = theme ? 'bg-white/80 backdrop-blur-md' : 'bg-[#121212]/80 backdrop-blur-md'; 
+  // Use same page bg shade in dark mode so navbar matches the rest of the layout
+  const navBg = theme
+    ? 'bg-white/80 backdrop-blur-md'
+    : 'bg-[#100f0f]/80 backdrop-blur-md';
+
   const textColor = theme ? 'text-slate-800' : 'text-slate-200';
   const linkHoverColor = theme ? 'hover:text-emerald-600' : 'hover:text-emerald-400';
   const borderColor = theme ? 'border-slate-200/60' : 'border-white/5';

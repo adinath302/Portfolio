@@ -6,15 +6,15 @@ import "@theme-toggles/react/css/Around.css";
 import { Around } from "@theme-toggles/react";
 import PortfolioStore from './useStore';
 
-const AnimatedThemeToggler = ({ className, duration = 400, ...props }) => {
+const AnimatedThemeToggler = ({ className, duration = 300, ...props }) => {
   const theme = PortfolioStore((state) => state.theme);
   const toggle = PortfolioStore((state) => state.toggle);
   const buttonRef = useRef(null);
 
-
   const playToggleSound = () => {
-    const audio = new Audio('/src/assets/click_sound.mp3');
-    audio.volume = 0.1;
+    // Using Vite's asset handling: import path under /src won't work as a runtime URL.
+    const audio = new Audio(new URL('../assets/click_sound.mp3', import.meta.url).toString());
+    audio.volume = 0.6;
     audio.playbackRate = 1.5;
     audio.play().catch((e) => console.log('Audio play failed:', e));
   };

@@ -3,8 +3,12 @@
 
 /* index.css */
 :root {
-  --bg-color: #ffffff; /* Default: White */
+  --bg-color: #ffffff; /* legacy (keep) */
+  --page-bg: #ffffff;
+  --page-fg: #0b0b0b;
+  --nav-bg-alpha: 0.8;
 }
+
 
 html {
   scroll-behavior: smooth;
@@ -20,9 +24,11 @@ body {
 }
 
 body {
-  background-color: var(--bg-color);
-  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.8, 1);
+  background-color: var(--page-bg);
+  color: var(--page-fg);
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.8, 1), color 0.3s cubic-bezier(0.4, 0, 0.8, 1);
 }
+
 
 body::before {
   content: '';

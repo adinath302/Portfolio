@@ -12,11 +12,15 @@ import PortfolioStore from './useStore';
 const Profile = () => {
   const theme = PortfolioStore((state) => state.theme);
 
-  // Global background rules to ensure the full viewport shifts cleanly
-  const pageBg = theme ? 'bg-white text-slate-900' : 'bg-[#121212] text-slate-100';
+  // Shared background/foreground colors come from CSS variables (set by App.jsx)
+  const pageBg = 'bg-[var(--page-bg)] text-[var(--page-fg)]';
+
+
+
 
   return (
     <div className={`min-h-screen w-full transition-colors duration-500 ${pageBg}`}>
+
       {/* 
         Fixed Navbar floating safely above content 
       */}

@@ -9,9 +9,14 @@ const App = () => {
   const prevThemeRef = useRef();
 
   useEffect(() => {
-    const nextColor = theme ? '#ffffff' : '#100f0f';
-    root.style.setProperty('--bg-color', nextColor);
+    const nextBg = theme ? '#ffffff' : '#100f0f';
+    const nextFg = theme ? '#0b0b0b' : '#f5f5f5';
+
+    root.style.setProperty('--bg-color', nextBg); // legacy
+    root.style.setProperty('--page-bg', nextBg);
+    root.style.setProperty('--page-fg', nextFg);
   }, [theme]);
+
 
   return (
     <div className="max-w-230 mx-auto min-h-screen">
@@ -22,6 +27,7 @@ const App = () => {
 
 export default App;
 
+//  portfolio link* - https://www.prasen.dev/
 //  portfolio link* - https://www.krishx.dev/   -- tech stack ui   
 //  portfolio link* - https://akshad-work.vercel.app/ -- for experience section ui 
 //  portfolio link* - https://ramx.in/ 

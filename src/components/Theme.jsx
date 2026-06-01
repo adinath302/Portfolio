@@ -6,14 +6,10 @@ const ThemeToggle = () => {
   const theme = PortfolioStore((state) => state.theme);
   const toggle = PortfolioStore((state) => state.toggle);
 
-
-
-
-
   return (
     <div>
-<span className={` ${theme ? "text-black" : "text-white"} flex items-center gap-2 cursor-pointer`}>
-      <AnimatedThemeToggler />
+      <span className={` ${theme ? "text-black" : "text-white"} flex items-center gap-2 cursor-pointer`}>
+        <AnimatedThemeToggler />
       </span>
     </div>
   );
