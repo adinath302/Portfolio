@@ -37,6 +37,7 @@ const Footer = () => {
           </p>
         </div>
 
+
         {/* Right Side: Social Icons */}
         <div className="flex items-center gap-5">
           {socialLinks.map((social) => {

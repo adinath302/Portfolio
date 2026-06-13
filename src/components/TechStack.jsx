@@ -15,14 +15,14 @@ const TechStack = () => {
   const cardStyles = theme
     ? 'bg-slate-50 border-slate-200/60 shadow-sm hover:bg-white hover:border-emerald-500/20 hover:shadow-md'
     : 'bg-white/[0.01] border-white/5 hover:bg-white/[0.04] hover:border-emerald-400/20';
-  
-  const textStyles = theme 
-    ? 'text-slate-600 group-hover:text-slate-900' 
+
+  const textStyles = theme
+    ? 'text-slate-600 group-hover:text-slate-900'
     : 'text-slate-400 group-hover:text-slate-100';
 
   return (
     <section id="tools" className="max-w-5xl mx-auto px-6 md:px-8 py-16 md:py-24">
-      
+
       {/* Aligned Header Section */}
       <div className="mb-12">
         <motion.h2
@@ -45,16 +45,15 @@ const TechStack = () => {
         {techStack.map((tech, index) => {
           const Icon = tech.icon;
           return (
-            <div 
-              key={`${tech.name}-${index}`} 
+            <div
+              key={`${tech.name}-${index}`}
               className={`${cardStyles} flex items-center gap-3 px-4 py-3.5 rounded-xl border group cursor-default transition-all duration-200 hover:scale-[1.02]`}
             >
-              {/* Icon Element Box */}
               <div className="flex items-center justify-center shrink-0">
+                {/* This now safely receives 'w-5 h-5 transition-transform...' for all icons */}
                 <Icon className={`w-5 h-5 transition-transform duration-200 group-hover:scale-110 ${tech.iconColor}`} />
               </div>
 
-              {/* Text Label element */}
               <span className={`text-xs font-medium tracking-wide whitespace-nowrap transition-colors duration-200 ${textStyles}`}>
                 {tech.name}
               </span>

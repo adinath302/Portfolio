@@ -17,7 +17,6 @@ const App = () => {
     root.style.setProperty('--page-fg', nextFg);
   }, [theme]);
 
-
   return (
     <div className="max-w-230 mx-auto min-h-screen">
       <Profile />
