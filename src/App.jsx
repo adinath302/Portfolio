@@ -25,20 +25,20 @@ const App = () => {
 }
 
 export default App;
-
+//  portfolio link* - https://ohsh.in/   -- better than ever
 //  portfolio link* - https://www.prasen.dev/
-//  portfolio link* - https://www.krishx.dev/   -- tech stack ui   
-//  portfolio link* - https://akshad-work.vercel.app/ -- for experience section ui 
-//  portfolio link* - https://ramx.in/ 
-//  portfolio link  - https://ayushworks.com/  -- for project section ui 
+//  portfolio link* - https://www.krishx.dev/   -- tech stack ui
+//  portfolio link* - https://akshad-work.vercel.app/ -- for experience section ui
+//  portfolio link* - https://ramx.in/
+//  portfolio link  - https://ayushworks.com/  -- for project section ui
 //  portfolio link - https://siddz.com/
 //  portfolio link - https://atharvaxdevs.xyz
-//  portfolio link - https://www.69ftw.site/   
+//  portfolio link - https://www.69ftw.site/
 
 //  portfolio link* - https://ramx.in/
 //  portfolio link - https://siddz.com/
 //  portfolio link - https://atharvaxdevs.xyz
-//  portfolio link - https://www.69ftw.site/   
+//  portfolio link - https://www.69ftw.site/
 
-// bio - 
+// bio -
 // "I'm a Front-End Engineer who thrives in the zero-to-one phase. I don't just build from wireframes; I partner with founders to define the product, ship MVPs in weeks, and iterate based on real user feedback. Expert in React and Next.js, with a 'get-it-done' mindset and a deep belief that business needs should drive development, not the other way around."   

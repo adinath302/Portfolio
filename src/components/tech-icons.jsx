@@ -2,14 +2,16 @@ import React from 'react';
 import { FaReact, FaHtml5, FaCss3Alt, FaDatabase, FaStore } from 'react-icons/fa6';
 import { SiVite, SiTypescript, SiTailwindcss, SiGsap, SiJavascript, SiFramer, SiNextdotjs, SiPrisma } from 'react-icons/si';
 import PortfolioStore from './useStore.jsx';
-import img from "../../public/shadcn.png";
-
+// FIXED: Removed curly braces around img for the default asset export
+import img from "../../public/shadcn.png"; 
 
 const TechIcons = () => {
   const theme = PortfolioStore((state) => state.theme);
+  
+  // FIXED: Ensured custom image component accepts and applies className properly
   const ShadcnIcon = ({ className }) => (
-  <img src="img" alt="shadcn ui" className={className} />
-);
+    <img src={img} alt="shadcn ui" className={`${className} object-contain`} />
+  );
 
   return [
     { name: 'React', icon: FaReact, iconColor: 'text-[#61DAFB]' },

@@ -33,9 +33,7 @@ const GitHubContributions = () => {
         <p className={`t-body ${subTextColor}`}>
           My consistent commitment to building software systems day-to-day.
         </p>
-
       </div>
-
       {/* 
         The Calendar Display Wrapper Box:
         Placing the calendar inside an elegant background shell structure matches 

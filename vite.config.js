@@ -5,7 +5,10 @@ import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base:"/Portfolio/",
+  // GitHub Pages typically serves the site from /<repo>/.
+  // Using relative base avoids broken asset URLs on sub-path deployments.
+  base:"./",
+
   plugins: [react(), tailwindcss(),
 ],
 resolve: {
