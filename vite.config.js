@@ -2,18 +2,25 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // https://vite.dev/config/
 export default defineConfig({
   // GitHub Pages typically serves the site from /<repo>/.
   // Using relative base avoids broken asset URLs on sub-path deployments.
-  base:"./",
+  base: './',
 
-  plugins: [react(), tailwindcss(),
-],
-resolve: {
+  plugins: [react(), tailwindcss()],
+
+  server: {
+    allowedHosts: ['.monkeycode-ai.live'],
+  },
+
+  resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      '@': path.resolve(__dirname, './src'),
     },
   },
 })

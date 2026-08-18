@@ -1,44 +1,45 @@
-import React, { useEffect, useRef } from 'react'
-import Profile from './components/Profile';
-import PortfolioStore from './components/useStore';
+import React, { useEffect } from 'react'
+import OneScreen from './components/OneScreen'
+import PortfolioStore from './components/useStore'
+
+const NIGHT = {
+  '--bg': '#111827',
+  '--surface': 'rgba(255, 255, 255, 0.05)',
+  '--border': 'rgba(255, 255, 255, 0.1)',
+  '--text': '#e5e7eb',
+  '--muted': '#9ca3af',
+  '--accent': '#60a5fa',
+  '--accent-soft': 'rgba(96, 165, 250, 0.12)',
+  '--secondary': '#93c5fd',
+}
+
+const DAWN = {
+  '--bg': '#ffffff',
+  '--surface': 'rgba(255, 255, 255, 0.8)',
+  '--border': 'rgba(17, 24, 39, 0.12)',
+  '--text': '#1f2937',
+  '--muted': '#6b7280',
+  '--accent': '#3b82f6',
+  '--accent-soft': 'rgba(59, 130, 246, 0.1)',
+  '--secondary': '#2563eb',
+}
 
 const App = () => {
-  const root = document.documentElement;
-
-  const theme = PortfolioStore((state) => state.theme);
-  const prevThemeRef = useRef();
+  const theme = PortfolioStore((state) => state.theme)
 
   useEffect(() => {
-    const nextBg = theme ? '#ffffff' : '#100f0f';
-    const nextFg = theme ? '#0b0b0b' : '#f5f5f5';
-
-    root.style.setProperty('--bg-color', nextBg); // legacy
-    root.style.setProperty('--page-bg', nextBg);
-    root.style.setProperty('--page-fg', nextFg);
-  }, [theme]);
+    const root = document.documentElement
+    const tokens = theme ? DAWN : NIGHT
+    Object.entries(tokens).forEach(([key, value]) =>
+      root.style.setProperty(key, value)
+    )
+  }, [theme])
 
   return (
-    <div className="max-w-230 mx-auto min-h-screen">
-      <Profile />
+    <div className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
+      <OneScreen />
     </div>
   )
 }
 
-export default App;
-//  portfolio link* - https://ohsh.in/   -- better than ever
-//  portfolio link* - https://www.prasen.dev/
-//  portfolio link* - https://www.krishx.dev/   -- tech stack ui
-//  portfolio link* - https://akshad-work.vercel.app/ -- for experience section ui
-//  portfolio link* - https://ramx.in/
-//  portfolio link  - https://ayushworks.com/  -- for project section ui
-//  portfolio link - https://siddz.com/
-//  portfolio link - https://atharvaxdevs.xyz
-//  portfolio link - https://www.69ftw.site/
-
-//  portfolio link* - https://ramx.in/
-//  portfolio link - https://siddz.com/
-//  portfolio link - https://atharvaxdevs.xyz
-//  portfolio link - https://www.69ftw.site/
-
-// bio -
-// "I'm a Front-End Engineer who thrives in the zero-to-one phase. I don't just build from wireframes; I partner with founders to define the product, ship MVPs in weeks, and iterate based on real user feedback. Expert in React and Next.js, with a 'get-it-done' mindset and a deep belief that business needs should drive development, not the other way around."   
+export default App

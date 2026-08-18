@@ -1,8 +1,8 @@
 import { create } from "zustand";
 
-const PortfolioStore = create((set, get) => {
-  const isDark = localStorage.getItem('theme') === 'dark';
-  const initialTheme = !isDark; // true light, false dark
+const PortfolioStore = create((set) => {
+  const stored = localStorage.getItem('theme');
+  const initialTheme = stored ? stored === 'light' : true; // default: light
 
   const setThemeClass = (theme) => {
     const isDarkMode = !theme;

@@ -1,53 +1,58 @@
 import React from 'react';
-import profile from '../assets/profile.jpg';
+import { FiArrowRight } from 'react-icons/fi';
+import Constellation from './Constellation';
 
-const ProfileName = ({ theme }) => {
-  const textColor = theme ? 'text-slate-900' : 'text-slate-100';
-  const subTextColor = theme ? 'text-slate-500' : 'text-slate-400';
-
+const Hero = () => {
   return (
-    // Max-width 5xl and mx-auto forces this exactly in line with the Navbar container
-    <section className="max-w-5xl mx-auto px-6 md:px-8 pt-28 pb-4">
-      <div className="flex items-start sm:items-center gap-5 sm:gap-6">
-        
-        {/* Profile Avatar with subtle high-quality accent ring */}
-        <div className="relative flex-shrink-0">
-          <img
-            src={profile}
-            alt="Adinath Gaware"
-            className={`h-20 w-20 sm:h-24 sm:w-24 rounded-full object-cover select-none ring-2 ${
-              theme ? 'ring-slate-100' : 'ring-white/5'
-            }`}
-          />
-          {/* Status Ping Indicator positioned right over the avatar */}
-          <span className="absolute bottom-1 right-1 flex h-3.5 w-3.5 rounded-full bg-emerald-500 ring-2 ring-current text-white animate-pulse" />
-        </div>
- 
-        {/* Typographic Text Stack */}
-        <div className="space-y-1">
-          <h1 className={`text-2xl sm:text-3xl font-bold tracking-tight ${textColor}`}>
-            Adinath Gaware
-          </h1>
-          
-          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
-            <p className={`text-base font-medium ${subTextColor}`}>
-              Front-end Developer
-            </p>
-            
-            {/* Elegant visual separation dot for desktop */}
-            <span className={`hidden sm:inline text-xs ${theme ? 'text-slate-300' : 'text-slate-700'}`}>•</span>
-            
-            <span className={`text-xs font-semibold tracking-wider uppercase ${
-              theme ? 'text-emerald-700' : 'text-emerald-400'
-            }`}>
-              Available for work
-            </span>
-          </div>
-        </div>
+    <section
+      id="top"
+      className="relative mx-auto flex max-w-5xl flex-col items-center px-6 pt-28 text-center md:pt-32"
+    >
+      <div className="t-label flex items-center gap-2 text-[var(--muted)]">
+        <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
+        Front-End Engineer · Universe of Code
+      </div>
 
+      <h1 className="sr-only">Adinath Gaware</h1>
+
+      <div className="mt-6 w-full max-w-3xl">
+        <Constellation text="ADINATH" />
+      </div>
+
+      <div className="star-divider my-6 text-[var(--accent)]">
+        <span className="text-lg">✦</span>
+      </div>
+
+      <p className="max-w-xl text-lg leading-relaxed text-[var(--muted)] md:text-xl">
+        I build fast, polished web experiences with React &amp; Next.js —
+        from the first star to a full galaxy of features.
+      </p>
+
+      <div className="mt-4 flex items-center gap-2 rounded-full bg-[var(--accent-soft)] px-4 py-1.5 text-sm font-semibold text-[var(--accent)]">
+        <span className="relative flex h-2 w-2">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--accent)] opacity-60" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--accent)]" />
+        </span>
+        Available for work
+      </div>
+
+      <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <a
+          href="#projects"
+          className="group flex items-center gap-2 rounded-full bg-[var(--text)] px-6 py-3 text-sm font-semibold text-[var(--bg)] transition-opacity hover:opacity-85"
+        >
+          Explore projects
+          <FiArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+        </a>
+        <a
+          href="#contact"
+          className="rounded-full border border-[var(--border)] px-6 py-3 text-sm font-semibold text-[var(--text)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+        >
+          Get in touch
+        </a>
       </div>
     </section>
   );
 };
 
-export default ProfileName; 
+export default Hero;

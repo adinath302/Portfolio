@@ -1,5 +1,4 @@
 import React, { useCallback, useRef } from 'react';
-import { Moon, Sun } from 'lucide-react';
 import { flushSync } from 'react-dom';
 import { cn } from '../lib/utils';
 import "@theme-toggles/react/css/Around.css";
@@ -7,7 +6,6 @@ import { Around } from "@theme-toggles/react";
 import PortfolioStore from './useStore';
 
 const AnimatedThemeToggler = ({ className, duration = 300, ...props }) => {
-  const theme = PortfolioStore((state) => state.theme);
   const toggle = PortfolioStore((state) => state.toggle);
   const buttonRef = useRef(null);
 
@@ -68,8 +66,7 @@ const AnimatedThemeToggler = ({ className, duration = 300, ...props }) => {
       type="button"
       onClick={toggleTheme}
       className={cn(
-        'flex items-center gap-2 cursor-pointer text-xl',
-        theme ? 'text-black' : 'text-white',
+        'flex items-center gap-2 cursor-pointer text-xl text-[var(--text)]',
         className
       )}
       {...props}

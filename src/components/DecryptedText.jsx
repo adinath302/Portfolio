@@ -10,10 +10,7 @@ const DecryptedText = ({
   parentClassName = '',
   encryptedClassName = '',
   animateOn = 'hover',
-  clickMode = 'toggle',
-  revealDirection = 'end',
-  sequential = true,
-  useOriginalCharsOnly = true
+  sequential = true
 }) => {
   const [decrypted, setDecrypted] = useState(false);
   const [displayText, setDisplayText] = useState('');
@@ -22,7 +19,7 @@ const DecryptedText = ({
 
   const getRandomChar = () => characters[Math.floor(Math.random() * characters.length)];
 
-  const decryptChar = (originalChar, index) => {
+  const decryptChar = (originalChar) => {
     if (!decrypted) {
       return getRandomChar();
     }

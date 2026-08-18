@@ -1,70 +1,69 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AnimatedThemeToggler from './AnimatedThemeToggler';
-import PortfolioStore from './useStore';
-import { motion } from 'framer-motion';
+
+const links = [
+  { label: 'About', href: '#about' },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Résumé', href: '#resume' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Contact', href: '#contact' },
+];
 
 const Navbar = () => {
-  const theme = PortfolioStore((state) => state.theme);
-
-  // Layout Colors (Softened contrasts for a premium, intentional look)
-  // Use same page bg shade in dark mode so navbar matches the rest of the layout
-  const navBg = theme
-    ? 'bg-white/80 backdrop-blur-md'
-    : 'bg-[#100f0f]/80 backdrop-blur-md';
-
-  const textColor = theme ? 'text-slate-800' : 'text-slate-200';
-  const linkHoverColor = theme ? 'hover:text-emerald-600' : 'hover:text-emerald-400';
-  const borderColor = theme ? 'border-slate-200/60' : 'border-white/5';
+  const [open, setOpen] = useState(false);
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 border-b transition-all duration-300 ${navBg} ${borderColor}`}>
-      {/* 
-        NOTE ON ALIGNMENT: Ensure your Hero, Project, and Contact sections 
-        also share this exact same max-width and horizontal padding setup 
-        (max-w-5xl mx-auto px-6 md:px-8) so your entire site aligns perfectly.
-      */}
-      <div className="max-w-5xl mx-auto flex h-16 items-center justify-between px-6 md:px-8">
-        
-        {/* Brand / Logo */}
-        <a 
-          href="/" 
-          className={`text-base font-bold tracking-tight transition-colors duration-200 ${textColor} hover:opacity-80`}
-        >
-          adinath<span className={theme ? 'text-emerald-600' : 'text-emerald-400'}>.codes</span>
+    <nav className="fixed left-0 right-0 top-0 z-50 border-b border-[var(--border)] bg-[var(--bg)]/70 backdrop-blur-md">
+      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
+        <a href="#top" className="flex items-center gap-2 font-mono text-base font-bold tracking-tight text-[var(--text)]">
+          <span className="text-[var(--accent)]">&gt;_</span>
+          adinath<span className="text-[var(--accent)]">.dev</span>
         </a>
 
-        {/* Navigation Actions */}
-        <div className="flex items-center gap-6 md:gap-8">
-          <ul className={`hidden sm:flex items-center gap-6 text-sm font-medium tracking-wide ${textColor}`}>
-            <li>
-              <a 
-                href="#projects" 
-                className={`transition-colors duration-200 ${linkHoverColor}`}
-              >
-                Projects
-              </a>
-            </li>
-            <li>
-              <a 
-                href="#contact" 
-                className={`transition-colors duration-200 ${linkHoverColor}`}
-              >
-                Contact
-              </a>
-            </li>
+        <div className="flex items-center gap-6">
+          <ul className="hidden items-center gap-6 sm:flex">
+            {links.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className="text-sm font-medium text-[var(--muted)] transition-colors hover:text-[var(--accent)]"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
           </ul>
 
-          {/* Minimalist Visual Divider */}
-          <div className={`h-4 w-[1px] hidden sm:block ${theme ? 'bg-slate-200' : 'bg-white/10'}`} />
+          <AnimatedThemeToggler />
 
-          {/* Interactive Toggle Target */}
-          <div className="flex items-center justify-center min-w-[24px] min-h-[24px]">
-            <AnimatedThemeToggler />
-          </div>
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Toggle menu"
+            className="flex h-9 w-9 flex-col items-center justify-center gap-1.5 sm:hidden"
+          >
+            <span className={`h-0.5 w-5 bg-[var(--text)] transition-transform ${open ? 'translate-y-[4px] rotate-45' : ''}`} />
+            <span className={`h-0.5 w-5 bg-[var(--text)] transition-transform ${open ? '-translate-y-[4px] -rotate-45' : ''}`} />
+          </button>
         </div>
-
       </div>
-    </nav> 
+
+      {open && (
+        <ul className="border-t border-[var(--border)] bg-[var(--bg)] px-6 py-2 sm:hidden">
+          {links.map((link) => (
+            <li key={link.href}>
+              <a
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="block py-3 text-base font-medium text-[var(--text)]"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </nav>
   );
 };
 
