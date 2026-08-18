@@ -25,9 +25,9 @@ const sections = [
         {[
           'React · Next.js · TypeScript',
           'JavaScript · Tailwind CSS · Vite',
-          'GSAP · Three.js · Framer Motion',
-          'TanStack Query · Zustand · Prisma',
-          'shadcn/ui · HTML5 · CSS3',
+          'GSAP · TanStack Query · Zustand',
+          'Framer Motion · Prisma · shadcn/ui',
+          'HTML5 · CSS3',
         ].map((skill) => (
           <li key={skill} className="flex items-center gap-3">
             <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
