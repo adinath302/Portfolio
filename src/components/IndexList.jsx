@@ -24,8 +24,10 @@ const sections = [
       <ul className="max-w-xl space-y-1 text-sm text-[var(--muted)]">
         {[
           'React · Next.js · TypeScript',
-          'Tailwind CSS · Three.js · GSAP',
-          'Node.js · Selenium · pSEO',
+          'JavaScript · Tailwind CSS · Vite',
+          'GSAP · Three.js · Framer Motion',
+          'TanStack Query · Zustand · Prisma',
+          'shadcn/ui · HTML5 · CSS3',
         ].map((skill) => (
           <li key={skill} className="flex items-center gap-2.5">
             <span className="h-1 w-1 rounded-full bg-[var(--accent)]" />
