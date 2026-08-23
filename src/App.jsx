@@ -1,44 +1,62 @@
-import React, { useEffect } from 'react'
-import OneScreen from './components/OneScreen'
-import PortfolioStore from './components/useStore'
+import React, { useCallback, useEffect, useState } from 'react'
+import SiteNav from './ohshin/SiteNav'
+import HomePage from './ohshin/HomePage'
+import WorkPage from './ohshin/WorkPage'
 
-const NIGHT = {
-  '--bg': '#111827',
-  '--surface': 'rgba(255, 255, 255, 0.05)',
-  '--border': 'rgba(255, 255, 255, 0.1)',
-  '--text': '#e5e7eb',
-  '--muted': '#9ca3af',
-  '--accent': '#60a5fa',
-  '--accent-soft': 'rgba(96, 165, 250, 0.12)',
-  '--secondary': '#93c5fd',
-}
-
-const DAWN = {
-  '--bg': '#ffffff',
-  '--surface': 'rgba(255, 255, 255, 0.8)',
-  '--border': 'rgba(17, 24, 39, 0.12)',
-  '--text': '#1f2937',
-  '--muted': '#6b7280',
-  '--accent': '#3b82f6',
-  '--accent-soft': 'rgba(59, 130, 246, 0.1)',
-  '--secondary': '#2563eb',
+const getPath = () => {
+  const path = window.location.pathname.replace(/\/+$/, '')
+  return path === '/work' ? 'work' : 'home'
 }
 
 const App = () => {
-  const theme = PortfolioStore((state) => state.theme)
+  const [page, setPage] = useState(getPath)
+  const [glitching, setGlitching] = useState(false)
 
   useEffect(() => {
-    const root = document.documentElement
-    const tokens = theme ? DAWN : NIGHT
-    Object.entries(tokens).forEach(([key, value]) =>
-      root.style.setProperty(key, value)
-    )
-  }, [theme])
+    window.history.scrollRestoration = 'manual'
+    const onPop = () => {
+      setPage(getPath())
+      window.scrollTo(0, 0)
+    }
+    window.addEventListener('popstate', onPop)
+    return () => window.removeEventListener('popstate', onPop)
+  }, [])
+
+  const navigate = useCallback((to) => {
+    window.history.pushState({}, '', to)
+    setPage(getPath())
+    window.scrollTo(0, 0)
+  }, [])
+
+  useEffect(() => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduce) return undefined
+    let timeout
+    const schedule = () => {
+      timeout = window.setTimeout(() => {
+        setGlitching(true)
+        window.setTimeout(() => {
+          setGlitching(false)
+          schedule()
+        }, 160)
+      }, 4500 + Math.random() * 5500)
+    }
+    schedule()
+    return () => window.clearTimeout(timeout)
+  }, [])
 
   return (
-    <div className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
-      <OneScreen />
-    </div>
+    <>
+      <main className={`bg-ink text-fog ${glitching ? 'page-glitch' : ''}`}>
+        {page === 'work' ? <WorkPage /> : <HomePage />}
+        <SiteNav page={page} navigate={navigate} />
+      </main>
+      <div className="crt-overlay" aria-hidden="true">
+        <div className="crt-scanlines" />
+        <div className="crt-vignette" />
+        <div className="crt-glitch-bar" />
+      </div>
+    </>
   )
 }
 
