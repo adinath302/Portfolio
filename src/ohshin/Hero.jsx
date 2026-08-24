@@ -19,7 +19,7 @@ const Hero = () => {
       {/* scanline + glow layer */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-[2] mix-blend-screen motion-safe:animate-hero-static"
+        className="pointer-events-none absolute inset-0 z-[2] mix-blend-screen"
         style={{
           opacity: 0.18,
           backgroundImage:
@@ -42,20 +42,13 @@ const Hero = () => {
       {/* dot grid */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-[4] motion-safe:animate-hero-static"
+        className="pointer-events-none absolute inset-0 z-[4]"
         style={{
           opacity: 0.09,
           backgroundImage:
             'radial-gradient(rgba(255,255,255,0.95) 0.7px, transparent 0.7px)',
           backgroundSize: '5px 5px',
         }}
-      />
-
-      {/* rolling scan bar */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 z-[5] h-1/2 bg-[linear-gradient(180deg,transparent,rgba(255,255,255,0.26),rgba(211,23,10,0.18),transparent)] mix-blend-screen blur-sm motion-safe:animate-scan-roll"
-        style={{ opacity: 0.18 }}
       />
 
       {/* diagonal glow beam */}
