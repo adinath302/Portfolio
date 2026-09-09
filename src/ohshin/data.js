@@ -36,9 +36,32 @@ export const socials = [
   },
 ]
 
+const heroTitle = 'hi, im adinath.'
+const heroSubtitle = 'engineer. designer. shipper.'
+const TITLE_CHAR_DELAY = 55
+const TITLE_START_DELAY = 350
+const SUBTITLE_CHAR_DELAY = 38
+const SUBTITLE_START_DELAY = heroTitle.length * TITLE_CHAR_DELAY + 500
+const CHAR_TRANSITION = 700 // .char-reveal transition duration in index.css
+
+// GlitchText applies startDelay twice — once to flip `started`, once as each
+// character's transition-delay — so the real settle time doubles it.
+const settleAt = (text, charDelay, startDelay) =>
+  startDelay * 2 + (text.length - 1) * charDelay + CHAR_TRANSITION
+
 export const hero = {
-  title: 'hi, im adinath.',
-  subtitle: 'engineer. designer. shipper.',
+  title: heroTitle,
+  subtitle: heroSubtitle,
+  titleCharDelay: TITLE_CHAR_DELAY,
+  titleStartDelay: TITLE_START_DELAY,
+  subtitleCharDelay: SUBTITLE_CHAR_DELAY,
+  subtitleStartDelay: SUBTITLE_START_DELAY,
+  // ms until the last character has finished resolving — HeroBackdrop waits
+  // for this before starting its scan-in.
+  settledAt: Math.max(
+    settleAt(heroTitle, TITLE_CHAR_DELAY, TITLE_START_DELAY),
+    settleAt(heroSubtitle, SUBTITLE_CHAR_DELAY, SUBTITLE_START_DELAY),
+  ),
 }
 
 export const about = {
@@ -52,11 +75,6 @@ export const about = {
     'When I am not shipping, I am exploring design systems, web performance, and the occasional open-source rabbit hole.',
   ],
 }
-
-export const playlists = [
-  { title: 'Playlist 01', embedUrl: '#', gradient: 'from-rose-900/50 via-red-900/40 to-black/20' },
-  { title: 'Playlist 02', embedUrl: '#', gradient: 'from-sky-900/50 via-blue-900/40 to-black/20' },
-]
 
 export const books = [
   {

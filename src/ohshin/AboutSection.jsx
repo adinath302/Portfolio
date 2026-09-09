@@ -1,7 +1,8 @@
 import React from 'react'
-import { FaMusic } from 'react-icons/fa6'
 import Tilt from './Tilt'
-import { about, playlists, books } from './data'
+import PlaylistPanel from './PlaylistPanel'
+import { about, books } from './data'
+import profileImg from '../assets/profile.jpg'
 
 const glassPanel =
   'relative isolate overflow-hidden rounded-[2rem] bg-white/[0.075] shadow-[0_30px_120px_rgba(0,0,0,0.42),0_0_74px_rgba(211,23,10,0.16),inset_0_1px_0_rgba(255,255,255,0.14)] ring-1 ring-white/12 backdrop-blur-2xl motion-safe:animate-glass-breathe sm:p-7 lg:rounded-[2.5rem] lg:p-9'
@@ -101,18 +102,11 @@ const AboutSection = () => {
                     transform: 'translateY(38px) scale(1.04) rotate(1.4deg)',
                   }}
                 >
-                  <div
-                    aria-label="Portrait of Adinath"
-                    className="flex h-full w-full items-center justify-center"
-                    style={{
-                      background:
-                        'radial-gradient(circle at 50% 30%, rgba(211,23,10,0.5), transparent 55%), radial-gradient(circle at 50% 110%, rgba(255,255,255,0.08), transparent 50%), linear-gradient(180deg, #191a20 0%, #0c0d11 100%)',
-                    }}
-                  >
-                    <span className="font-doto text-[clamp(7rem,20vw,13rem)] font-black uppercase leading-none text-white/15 drop-shadow-[0_0_40px_rgba(211,23,10,0.35)]">
-                      AG
-                    </span>
-                  </div>
+                  <img
+                    src={profileImg}
+                    alt="Portrait of Adinath"
+                    className="h-full w-full object-cover object-center"
+                  />
                 </div>
                 <div
                   aria-hidden="true"
@@ -125,46 +119,7 @@ const AboutSection = () => {
 
         {/* ---- footer: playlists + books ---- */}
         <footer className="grid w-full gap-8 lg:grid-cols-2">
-          {/* playlists */}
-          <div className="relative isolate min-w-0 overflow-hidden rounded-[2rem] bg-white/[0.075] p-5 shadow-[0_18px_70px_rgba(0,0,0,0.34),inset_0_1px_0_rgba(255,255,255,0.10)] ring-1 ring-white/10 motion-safe:animate-glass-breathe [contain:paint] sm:p-6 motion-safe:[animation-delay:-5.6s] motion-safe:[animation-duration:13.1s]">
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-y-0 -z-10 w-1/2 motion-safe:animate-glass-sheen left-[-42%] bg-white/[0.032] motion-safe:[animation-delay:-7.4s] motion-safe:[animation-duration:14.2s]"
-            />
-            <section>
-              <div className="flex items-end justify-between gap-4">
-                <h2
-                  data-text="playlists"
-                  className="glitch-hover font-doto text-[2rem] font-black uppercase leading-none tracking-normal text-white sm:text-[3.4rem]"
-                >
-                  playlists
-                </h2>
-                <p className="font-mono text-[0.56rem] uppercase tracking-[0.2em] text-white/42 sm:text-[0.6rem] sm:tracking-[0.28em]">
-                  records shelf
-                </p>
-              </div>
-              <div className="mt-5 flex max-w-full overflow-x-auto pb-3 no-scrollbar">
-                <div className="flex w-max max-w-none gap-4 sm:gap-5">
-                  {playlists.map((playlist) => (
-                    <div
-                      key={playlist.title}
-                      className="w-[min(17.5rem,calc(100vw-4rem))] flex-none space-y-2 sm:w-72"
-                    >
-                      <p className="font-mono text-[0.68rem] uppercase tracking-[0.18em] text-white/58">
-                        {playlist.title}
-                      </p>
-                      <div className="relative flex h-[152px] items-center justify-center overflow-hidden rounded-[1.4rem] bg-gradient-to-br ring-1 ring-white/6 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
-                        <div
-                          className={`absolute inset-0 bg-gradient-to-br ${playlist.gradient}`}
-                        />
-                        <FaMusic className="relative h-9 w-9 text-white/35" />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </section>
-          </div>
+          <PlaylistPanel />
 
           {/* books */}
           <div className="relative isolate min-w-0 overflow-hidden rounded-[2rem] bg-white/[0.075] p-5 shadow-[0_18px_70px_rgba(0,0,0,0.34),inset_0_1px_0_rgba(255,255,255,0.10)] ring-1 ring-white/10 motion-safe:animate-glass-breathe [contain:paint] sm:p-6 motion-safe:[animation-delay:-8.2s] motion-safe:[animation-duration:12.6s]">

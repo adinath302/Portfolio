@@ -1,5 +1,6 @@
 import React from 'react'
 import GlitchText from './GlitchText'
+import HeroBackdrop from './HeroBackdrop'
 import { hero } from './data'
 
 const Hero = () => {
@@ -15,6 +16,9 @@ const Hero = () => {
           }}
         />
       </div>
+
+      {/* photo backdrop, fades in under the CRT texture once decoded */}
+      <HeroBackdrop />
 
       {/* scanline + glow layer */}
       <div
@@ -66,13 +70,17 @@ const Hero = () => {
           />
           <div>
             <h1 className="font-doto text-[2.25rem] font-semibold leading-[1.04] tracking-normal text-white drop-shadow-[0_0_16px_rgba(255,255,255,0.16)] sm:text-[3.5rem] md:text-[4.75rem] lg:text-[6rem]">
-              <GlitchText text={hero.title} charDelay={55} startDelay={350} />
+              <GlitchText
+                text={hero.title}
+                charDelay={hero.titleCharDelay}
+                startDelay={hero.titleStartDelay}
+              />
             </h1>
             <p className="mt-5 font-doto text-[13px] font-medium tracking-[0.1em] text-white/90 sm:mt-6 sm:text-[18px] sm:tracking-[0.14em] md:text-[24px]">
               <GlitchText
                 text={hero.subtitle}
-                charDelay={38}
-                startDelay={hero.title.length * 55 + 500}
+                charDelay={hero.subtitleCharDelay}
+                startDelay={hero.subtitleStartDelay}
               />
             </p>
           </div>

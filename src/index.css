@@ -26,7 +26,6 @@
   --animate-stack-marquee: stack-marquee 18s linear infinite;
   --animate-reach-pulse: reach-pulse 8s ease-in-out infinite;
   --animate-reach-sweep: reach-sweep 5.2s cubic-bezier(0.45, 0, 0.2, 1) infinite;
-
   @keyframes work-reveal {
     0% {
       opacity: 0;
@@ -149,6 +148,17 @@ body {
   filter: blur(0);
 }
 
+/* hero photo backdrop: simple fade-in */
+.hero-photo {
+  opacity: 0;
+  animation: hero-fade-in 1.2s ease-out forwards;
+}
+@keyframes hero-fade-in {
+  to {
+    opacity: 0.82;
+  }
+}
+
 /* ---------- hover glitch on doto titles ---------- */
 .glitch-hover {
   position: relative;
@@ -226,6 +236,10 @@ body {
   .char-reveal {
     opacity: 1;
     filter: blur(0);
+  }
+  .hero-photo {
+    animation: none;
+    opacity: 0.82;
   }
   .glitch-hover,
   .glitch-hover::before,
