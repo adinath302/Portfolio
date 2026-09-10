@@ -4,10 +4,10 @@ import AboutSection from './AboutSection'
 
 const HomePage = () => {
   return (
-    <>
+    <div className="snap-container">
       <Hero />
       <AboutSection />
-    </>
+    </div>
   )
 }
 

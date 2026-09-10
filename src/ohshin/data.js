@@ -1,35 +1,30 @@
 export const socials = [
   {
     label: 'X',
-    url: 'https://x.com/Adinath302',
     href: 'https://x.com/Adinath302',
     aria: 'X',
     size: 'h-5 w-5 sm:h-5.5 sm:w-5.5',
   },
   {
     label: 'Instagram',
-    url: 'https://instagram.com/adinath.codes',
     href: 'https://instagram.com/adinath.codes',
     aria: 'Instagram',
     size: 'h-6 w-6 sm:h-7 sm:w-7',
   },
   {
     label: 'Mail',
-    url: 'https://mail.google.com/mail/?view=cm&fs=1&to=adinathgaware23072003@gmail.com',
     href: 'https://mail.google.com/mail/?view=cm&fs=1&to=adinathgaware23072003@gmail.com',
     aria: 'Mail',
     size: 'h-5 w-5 sm:h-6 sm:w-6',
   },
   {
     label: 'LinkedIn',
-    url: 'https://linkedin.com/in/adinath-gaware-97a68225a/',
     href: 'https://linkedin.com/in/adinath-gaware-97a68225a/',
     aria: 'LinkedIn',
     size: 'h-5 w-5 sm:h-6 sm:w-6',
   },
   {
     label: 'GitHub',
-    url: 'https://github.com/adinath302',
     href: 'https://github.com/adinath302',
     aria: 'GitHub',
     size: 'h-5 w-5 sm:h-6 sm:w-6',
@@ -132,25 +127,25 @@ export const reach = {
   label: 'live-ish',
   tooltip:
     'Placeholder metrics for now — plug in real numbers from your analytics whenever you are ready.',
-  cards: [
+    cards: [
     {
       icon: 'twitter',
       index: '01',
-      metric: '0+',
+      metric: '—',
       metricLabel: 'Impressions',
       href: 'https://x.com/Adinath302',
     },
     {
       icon: 'github',
       index: '02',
-      metric: '0+',
+      metric: '—',
       metricLabel: 'Stars',
       href: 'https://github.com/adinath302',
     },
     {
       icon: 'visits',
       index: '03',
-      metric: '0+',
+      metric: '—',
       metricLabel: 'Page visits',
       href: null,
       tooltip: true,
@@ -202,14 +197,14 @@ export const projects = [
     summary:
       'Curated collection of Claude Code sub-agent prompts and MCP servers. Discover sub-agents, engineered system prompts, and custom development pipelines seamlessly.',
     githubUrl: 'https://github.com/adinath302',
-    liveUrl: '#',
+    liveUrl: null,
   },
   {
     title: 'Codejeet',
     summary:
       'System Design and DSA learning platform featuring 17,000+ company-wise LeetCode questions scraped via automated Selenium drivers and rendered using programmatic SEO.',
     githubUrl: 'https://github.com/adinath302',
-    liveUrl: '#',
+    liveUrl: null,
   },
 ]
 
@@ -229,7 +224,7 @@ export const reachOut = {
           href: 'https://mail.google.com/mail/?view=cm&fs=1&to=adinathgaware23072003@gmail.com',
           external: true,
         },
-        { label: 'get resume', href: '#', external: false },
+        { label: 'get resume', href: 'https://github.com/adinath302', external: true },
       ],
     },
     {

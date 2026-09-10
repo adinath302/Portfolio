@@ -1,20 +1,23 @@
 import React from 'react'
 
-const SRC = `${import.meta.env.BASE_URL}hero-bg.jpg`
-
 const HeroBackdrop = () => {
   return (
     <div
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 z-[1] overflow-hidden"
     >
-      <img
-        src={SRC}
-        alt=""
-        fetchpriority="high"
-        decoding="async"
-        className="hero-photo h-full w-full object-cover object-center"
-      />
+      <picture>
+        <source srcSet={`${import.meta.env.BASE_URL}hero-bg.webp`} type="image/webp" />
+        <img
+          src={`${import.meta.env.BASE_URL}hero-bg.jpg`}
+          alt=""
+          fetchpriority="high"
+          decoding="async"
+          width="1920"
+          height="1080"
+          className="hero-photo h-full w-full object-cover object-center"
+        />
+      </picture>
 
       {/* scrim: keeps the headline readable over the busy mid-frame */}
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,4,8,0.55)_0%,rgba(3,4,8,0.26)_38%,rgba(3,4,8,0.82)_100%)]" />

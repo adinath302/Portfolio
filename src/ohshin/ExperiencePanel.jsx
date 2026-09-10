@@ -7,13 +7,10 @@ const ExperiencePanel = () => {
   return (
     <aside className="motion-safe:animate-work-reveal min-w-0 [animation-delay:220ms]">
       <section className="relative isolate overflow-hidden rounded-[2rem] bg-white/[0.045] p-5 shadow-[0_24px_90px_rgba(0,0,0,0.26),0_0_52px_rgba(211,23,10,0.14),inset_0_1px_0_rgba(255,255,255,0.12)] ring-1 ring-white/10 backdrop-blur-2xl motion-safe:animate-glass-breathe sm:p-6">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-y-0 -z-10 w-1/2 motion-safe:animate-glass-sheen left-[-35%] bg-white/[0.04] motion-safe:[animation-delay:-4.7s] motion-safe:[animation-duration:13.4s]"
-        />
+
         <div className="flex items-end justify-between gap-4">
           <h2
-            data-text="Experience"
+            data-text="experience"
             className="glitch-hover font-doto text-[1.9rem] font-black uppercase leading-none tracking-normal text-white sm:text-[3.2rem]"
           >
             Experience
