@@ -112,7 +112,7 @@ body {
   scrollbar-width: none;
 }
 
-/* per-character hero reveal */
+/* per-character hero reveal — simplified on mobile for performance */
 .char-reveal {
   display: inline-block;
   white-space: pre;
@@ -267,5 +267,39 @@ body {
   }
   .page-enter {
     animation: none;
+  }
+}
+
+/* ---------- mobile performance ---------- */
+@media (max-width: 640px) {
+  /* kill expensive backdrop-blur on mobile GPUs */
+  .backdrop-blur-2xl {
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
+
+  /* stop infinite breathing animation on mobile */
+  .motion-safe\:animate-glass-breathe {
+    animation: none !important;
+  }
+
+  /* remove expensive blur filter transition on hero chars */
+  .char-reveal {
+    filter: none !important;
+    transition: opacity 0.5s ease-out !important;
+  }
+
+  /* remove will-change hints that exhaust mobile GPU VRAM */
+  .animate-glass-breathe,
+  .animate-work-reveal,
+  .char-reveal,
+  .hero-photo,
+  .glitch-hover {
+    will-change: auto !important;
+  }
+
+  /* reduce hero glow beam */
+  .blur-2xl {
+    filter: blur(16px) !important;
   }
 }

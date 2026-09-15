@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import WorkHero from './WorkHero'
 import ReachPanel from './ReachPanel'
 import TechMarquee from './TechMarquee'
-import ExperiencePanel from './ExperiencePanel'
-import ProjectsPanel from './ProjectsPanel'
-import ReachOut from './ReachOut'
+
+const ExperiencePanel = lazy(() => import('./ExperiencePanel'))
+const ProjectsPanel = lazy(() => import('./ProjectsPanel'))
+const ReachOut = lazy(() => import('./ReachOut'))
 
 const WorkPage = () => {
   return (
@@ -23,10 +24,14 @@ const WorkPage = () => {
         <ReachPanel />
         <TechMarquee />
         <div className="grid gap-8 py-4 lg:grid-cols-[minmax(18rem,0.56fr)_minmax(0,1fr)] lg:gap-8 lg:py-6">
-          <ExperiencePanel />
-          <ProjectsPanel />
+          <Suspense fallback={null}>
+            <ExperiencePanel />
+            <ProjectsPanel />
+          </Suspense>
         </div>
-        <ReachOut />
+        <Suspense fallback={null}>
+          <ReachOut />
+        </Suspense>
       </div>
     </section>
   )

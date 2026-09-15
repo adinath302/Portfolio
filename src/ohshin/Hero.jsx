@@ -23,7 +23,7 @@ const Hero = () => {
       {/* scanline + glow layer */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-[2] mix-blend-screen"
+        className="pointer-events-none absolute inset-0 z-[2] hidden mix-blend-screen sm:block"
         style={{
           opacity: 0.18,
           backgroundImage:
@@ -34,7 +34,7 @@ const Hero = () => {
       {/* diagonal grid */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-[3]"
+        className="pointer-events-none absolute inset-0 z-[3] hidden sm:block"
         style={{
           opacity: 0.08,
           backgroundImage:
@@ -46,7 +46,7 @@ const Hero = () => {
       {/* dot grid */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-[4]"
+        className="pointer-events-none absolute inset-0 z-[4] hidden sm:block"
         style={{
           opacity: 0.09,
           backgroundImage:
@@ -58,7 +58,7 @@ const Hero = () => {
       {/* diagonal glow beam */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-[-18%] top-[-28%] z-[5] h-[42rem] rotate-[-9deg] bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent)] blur-2xl"
+        className="pointer-events-none absolute inset-x-[-18%] top-[-28%] z-[5] hidden h-[42rem] rotate-[-9deg] bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent)] blur-2xl sm:block"
         style={{ opacity: 0.14, transform: 'translateX(-18%)' }}
       />
 

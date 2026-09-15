@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { techStack } from './data'
 
 const ReactIcon = () => (
@@ -110,10 +110,20 @@ const chipBase =
 
 const TechMarquee = () => {
   const items = [...techStack, ...techStack]
+  const wrapRef = useRef(null)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const el = wrapRef.current
+    if (!el) return
+    const io = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0 })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
 
   return (
     <div className="py-4 lg:py-6">
-      <div className="group/stack relative isolate overflow-hidden rounded-[2rem] bg-white/[0.045] p-5 shadow-[0_24px_90px_rgba(0,0,0,0.26),0_0_52px_rgba(211,23,10,0.14),inset_0_1px_0_rgba(255,255,255,0.12)] ring-1 ring-white/10 backdrop-blur-2xl motion-safe:animate-glass-breathe sm:p-6">
+      <div ref={wrapRef} className="group/stack relative isolate overflow-hidden rounded-[2rem] bg-white/[0.045] p-5 shadow-[0_24px_90px_rgba(0,0,0,0.26),0_0_52px_rgba(211,23,10,0.14),inset_0_1px_0_rgba(255,255,255,0.12)] ring-1 ring-white/10 backdrop-blur-2xl motion-safe:animate-glass-breathe sm:p-6">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 -z-10 opacity-45 [background:radial-gradient(circle_at_16%_14%,rgba(255,255,255,.08),transparent_28%),radial-gradient(circle_at_86%_60%,rgba(211,23,10,.13),transparent_36%)]"
@@ -131,7 +141,7 @@ const TechMarquee = () => {
             </h2>
           </div>
           <div className="group/marquee relative overflow-hidden rounded-full border border-white/10 bg-black/25">
-            <div className="flex w-max transform-gpu gap-2 py-2 will-change-transform motion-reduce:animate-none group-hover/marquee:[animation-play-state:paused] group-focus-within/marquee:[animation-play-state:paused]" style={{ animation: 'marquee 30s linear infinite' }}>
+            <div className="flex w-max transform-gpu gap-2 py-2 will-change-transform motion-reduce:animate-none group-hover/marquee:[animation-play-state:paused] group-focus-within/marquee:[animation-play-state:paused]" style={{ animation: visible ? 'marquee 30s linear infinite' : 'none' }}>
               {items.map((tech, index) => {
                 const Icon = ICONS[tech.icon]
                 return (
