@@ -31,9 +31,11 @@ class ErrorBoundary extends Component {
 }
 
 const getPath = () => {
-  const path = window.location.pathname.replace(/\/+$/, '')
-  if (path === '/work') return 'work'
-  if (path === '' || path === '/') return 'home'
+  const path = window.location.pathname
+    .replace(new RegExp(`^${import.meta.env.BASE_URL}`), '')
+    .replace(/\/+$/, '')
+  if (path === 'work') return 'work'
+  if (path === '') return 'home'
   return '404'
 }
 
@@ -42,7 +44,7 @@ const NotFound = () => (
     <h1 className="font-doto text-6xl font-black uppercase text-white/20">404</h1>
     <p className="mt-4 text-white/60">Page not found.</p>
     <a
-      href="/"
+      href={import.meta.env.BASE_URL}
       className="mt-6 rounded-full bg-white/10 px-6 py-2 text-sm uppercase tracking-widest text-white ring-1 ring-white/20 transition-colors hover:bg-white/20"
     >
       Go home
