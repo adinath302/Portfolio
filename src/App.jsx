@@ -31,11 +31,13 @@ class ErrorBoundary extends Component {
 }
 
 const getPath = () => {
-  const path = window.location.pathname
-    .replace(new RegExp(`^${import.meta.env.BASE_URL}`), '')
-    .replace(/\/+$/, '')
-  if (path === 'work') return 'work'
-  if (path === '') return 'home'
+  const raw = window.location.pathname.replace(/\/+$/, '')
+  const segments = raw.split('/').filter(Boolean)
+  const last = segments[segments.length - 1] || ''
+  const rest = segments.slice(0, -1).join('/')
+  if (last === 'work') return 'work'
+  if (rest === 'work') return 'home'
+  if (segments.length <= 1) return 'home'
   return '404'
 }
 
