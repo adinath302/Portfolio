@@ -30,14 +30,21 @@ class ErrorBoundary extends Component {
   }
 }
 
+const BASE = import.meta.env.BASE_URL.replace(/\/+$/, '')
+
 const getPath = () => {
   const raw = window.location.pathname.replace(/\/+$/, '')
-  const segments = raw.split('/').filter(Boolean)
+  const withoutBase = BASE && raw.startsWith(BASE) ? raw.slice(BASE.length) : raw
+  const segments = withoutBase.split('/').filter(Boolean)
   const last = segments[segments.length - 1] || ''
-  const rest = segments.slice(0, -1).join('/')
   if (last === 'work') return 'work'
-  if (rest === 'work') return 'home'
-  if (segments.length <= 1) return 'home'
+
+  // 404.html redirect puts path in query: ?/work
+  const qs = window.location.search
+  if (qs.includes('/work')) return 'work'
+  if (qs && qs !== '?') return 'home'
+
+  if (segments.length === 0) return 'home'
   return '404'
 }
 
@@ -76,7 +83,8 @@ const App = () => {
   }, [page])
 
   const navigate = useCallback((to) => {
-    window.history.pushState({}, '', to)
+    const href = to.startsWith(BASE) ? to : `${BASE}${to}`
+    window.history.pushState({}, '', href)
     setPage(getPath())
     setPageKey((k) => k + 1)
     window.scrollTo(0, 0)

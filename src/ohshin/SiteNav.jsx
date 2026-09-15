@@ -51,6 +51,8 @@ const linkBase =
 const activePill =
   'absolute inset-0 -z-10 rounded-full border border-white/16 bg-white/12 shadow-[inset_0_1px_0_rgba(255,255,255,0.16),0_8px_24px_rgba(0,0,0,0.22)]'
 
+const BASE = import.meta.env.BASE_URL.replace(/\/+$/, '')
+
 const SiteNav = ({ page, navigate }) => {
   const goHome = (e) => {
     e.preventDefault()
@@ -89,7 +91,7 @@ const SiteNav = ({ page, navigate }) => {
         >
           <div className="relative flex shrink-0 items-center justify-center gap-0.5 sm:gap-1">
             <a
-              href="/"
+              href={`${BASE}/`}
               onClick={goHome}
               aria-current={page === 'home' ? 'page' : undefined}
               className={`${linkBase} ${page === 'home' ? 'text-white' : 'text-white/70 hover:text-white/90'}`}
@@ -121,7 +123,7 @@ const SiteNav = ({ page, navigate }) => {
               </span>
             </a>
             <a
-              href="/work"
+              href={`${BASE}/work`}
               onClick={goWork}
               aria-current={page === 'work' ? 'page' : undefined}
               className={`${linkBase} ${page === 'work' ? 'text-white' : 'text-white/70 hover:text-white/90'}`}
