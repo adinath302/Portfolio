@@ -66,6 +66,8 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: none;
 }
 
 body {
@@ -74,6 +76,7 @@ body {
   font-family: var(--font-mono);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
 }
 
 /* ---------- scroll-snap (home page) ---------- */
@@ -81,9 +84,19 @@ body {
   scroll-snap-type: y proximity;
   overflow-y: auto;
   height: 100dvh;
+  -webkit-overflow-scrolling: touch;
+  will-change: scroll-position;
+  contain: layout style;
 }
 .snap-container > * {
   scroll-snap-align: start;
+}
+
+/* smooth scroll containers */
+.scroll-container {
+  -webkit-overflow-scrolling: touch;
+  will-change: scroll-position;
+  contain: layout style;
 }
 
 /* ---------- page transition ---------- */
@@ -301,5 +314,24 @@ body {
   /* reduce hero glow beam */
   .blur-2xl {
     filter: blur(16px) !important;
+  }
+
+  /* disable scroll-snap on mobile for buttery smooth scroll */
+  .snap-container {
+    scroll-snap-type: none !important;
+  }
+
+  /* lighten heavy shadows that repaint on scroll */
+  [class*="shadow-"] {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  /* GPU-accelerate all scrollable containers */
+  main,
+  section,
+  .snap-container {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
 }
