@@ -34,8 +34,7 @@ const BASE = import.meta.env.BASE_URL.replace(/\/+$/, '')
 
 const getPath = () => {
   const raw = window.location.pathname.replace(/\/+$/, '')
-  const withoutBase = BASE && raw.startsWith(BASE) ? raw.slice(BASE.length) : raw
-  const segments = withoutBase.split('/').filter(Boolean)
+  const segments = raw.split('/').filter(Boolean)
   const last = segments[segments.length - 1] || ''
   if (last === 'work') return 'work'
 
@@ -44,7 +43,9 @@ const getPath = () => {
   if (qs.includes('/work')) return 'work'
   if (qs && qs !== '?') return 'home'
 
-  if (segments.length === 0) return 'home'
+  // On GitHub Pages the repo name is always the first segment (e.g. /Portfolio),
+  // so any URL with 0 or 1 segments is the home page.
+  if (segments.length <= 1) return 'home'
   return '404'
 }
 
@@ -83,7 +84,7 @@ const App = () => {
   }, [page])
 
   const navigate = useCallback((to) => {
-    const href = to.startsWith(BASE) ? to : `${BASE}${to}`
+    const href = to.startsWith('/') ? `${BASE}${to}` : `${BASE}/${to}`
     window.history.pushState({}, '', href)
     setPage(getPath())
     setPageKey((k) => k + 1)
