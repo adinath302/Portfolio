@@ -106,7 +106,7 @@ const ICONS = {
 }
 
 const chipBase =
-  'chip-hover flex h-10 items-center gap-2 rounded-full border px-3 font-mono text-[0.58rem] uppercase tracking-[0.16em] shadow-[0_10px_26px_rgba(0,0,0,0.18)] sm:h-11 sm:px-4 sm:text-[0.62rem]'
+  'chip-hover flex h-10 items-center gap-2 rounded-full border px-3 font-mono text-[0.58rem] uppercase tracking-[0.16em] sm:h-11 sm:px-4 sm:text-[0.62rem]'
 
 const TechMarquee = () => {
   const items = [...techStack, ...techStack]
@@ -123,35 +123,63 @@ const TechMarquee = () => {
 
   return (
     <div className="py-4 lg:py-6">
-      <div ref={wrapRef} className="group/stack relative isolate overflow-hidden rounded-[2rem] bg-white/[0.045] p-5 shadow-[0_24px_90px_rgba(0,0,0,0.26),0_0_52px_rgba(211,23,10,0.14),inset_0_1px_0_rgba(255,255,255,0.12)] ring-1 ring-white/10 backdrop-blur-2xl motion-safe:animate-glass-breathe sm:p-6">
+      <div
+        ref={wrapRef}
+        className="group/stack relative isolate overflow-hidden rounded-[2rem] p-5 backdrop-blur-2xl motion-safe:animate-glass-breathe sm:p-6"
+        style={{
+          background: 'var(--c-surface)',
+          boxShadow: 'var(--shadow-glass)',
+          border: '1px solid var(--c-border)',
+        }}
+      >
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 -z-10 opacity-45 [background:radial-gradient(circle_at_16%_14%,rgba(255,255,255,.08),transparent_28%),radial-gradient(circle_at_86%_60%,rgba(211,23,10,.13),transparent_36%)]"
+          className="pointer-events-none absolute inset-0 -z-10 opacity-45"
+          style={{
+            background: 'radial-gradient(circle_at_16%_14%,var(--c-overlay),transparent_28%),radial-gradient(circle_at_86%_60%,var(--c-accent-glow),transparent_36%)',
+          }}
         />
         <div className="grid gap-4 lg:grid-cols-[12rem_minmax(0,1fr)] lg:items-center">
           <div>
-            <p className="font-mono text-[0.56rem] uppercase tracking-[0.22em] text-accent sm:text-[0.62rem]">
+            <p className="font-mono text-[0.56rem] uppercase tracking-[0.22em] sm:text-[0.62rem]" style={{ color: 'var(--c-accent)' }}>
               stack overload
             </p>
             <h2
               data-text="tech stack"
-              className="glitch-hover mt-2 font-doto text-[2rem] font-black uppercase leading-none tracking-normal text-white sm:text-[2.65rem]"
+              className="glitch-hover mt-2 font-doto text-[2rem] font-black uppercase leading-none tracking-normal sm:text-[2.65rem]"
+              style={{ color: 'var(--c-text)' }}
             >
               tech stack
             </h2>
           </div>
-          <div className="group/marquee relative overflow-hidden rounded-full border border-white/10 bg-black/25">
+          <div
+            className="group/marquee relative overflow-hidden rounded-full"
+            style={{
+              border: '1px solid var(--c-border)',
+              background: 'var(--c-overlay)',
+            }}
+          >
             <div className="flex w-max transform-gpu gap-2 py-2 will-change-transform motion-reduce:animate-none group-hover/marquee:[animation-play-state:paused] group-focus-within/marquee:[animation-play-state:paused]" style={{ animation: visible ? 'marquee 30s linear infinite' : 'none' }}>
               {items.map((tech, index) => {
                 const Icon = ICONS[tech.icon]
                 return (
                   <span
                     key={`${tech.name}-${index}`}
-                    className={`${chipBase} ${
-                      tech.accent
-                        ? 'border-accent/26 bg-accent/[0.105] text-white'
-                        : 'border-white/10 bg-white/[0.045] text-white/68'
-                    }`}
+                    className={`${chipBase}`}
+                    style={{
+                      boxShadow: '0 10px 26px var(--c-shadow)',
+                      ...(tech.accent
+                        ? {
+                            borderColor: 'var(--c-accent-soft)',
+                            background: 'var(--c-accent-soft)',
+                            color: 'var(--c-text)',
+                          }
+                        : {
+                            borderColor: 'var(--c-border)',
+                            background: 'var(--c-surface)',
+                            color: 'var(--c-text-sec)',
+                          }),
+                    }}
                   >
                     {Icon ? <Icon /> : null}
                     {tech.name}

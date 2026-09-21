@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTheme } from '../ThemeContext'
 import { socials } from './data'
 
 const ALEX_SPRITE =
@@ -37,6 +38,26 @@ const GithubIcon = ({ className }) => (
   </svg>
 )
 
+const SunIcon = ({ className }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="5" />
+    <line x1="12" y1="1" x2="12" y2="3" />
+    <line x1="12" y1="21" x2="12" y2="23" />
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+    <line x1="1" y1="12" x2="3" y2="12" />
+    <line x1="21" y1="12" x2="23" y2="12" />
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+  </svg>
+)
+
+const MoonIcon = ({ className }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+  </svg>
+)
+
 const SOCIAL_ICONS = {
   X: XIcon,
   Instagram: InstagramIcon,
@@ -49,11 +70,13 @@ const linkBase =
   'relative z-10 min-w-[4.65rem] shrink-0 rounded-full px-2.5 py-2.5 text-center font-doto text-[10px] font-black tracking-[0.06em] outline-none focus-visible:ring-2 focus-visible:ring-white/50 sm:min-w-[7rem] sm:px-6 sm:py-3 sm:text-[14px] sm:tracking-[0.12em] transition-colors duration-150'
 
 const activePill =
-  'absolute inset-0 -z-10 rounded-full border border-white/16 bg-white/12 shadow-[inset_0_1px_0_rgba(255,255,255,0.16),0_8px_24px_rgba(0,0,0,0.22)]'
+  'absolute inset-0 -z-10 rounded-full border shadow-[inset_0_1px_0_var(--c-glass-highlight),0_8px_24px_var(--c-shadow)]'
 
 const BASE = import.meta.env.BASE_URL.replace(/\/+$/, '')
 
 const SiteNav = ({ page, navigate }) => {
+  const { theme, toggleTheme } = useTheme()
+
   const goHome = (e) => {
     e.preventDefault()
     if (page === 'work') {
@@ -76,14 +99,29 @@ const SiteNav = ({ page, navigate }) => {
       data-site-nav="true"
       className="pointer-events-none fixed inset-x-0 bottom-[calc(0.75rem+env(safe-area-inset-bottom))] z-30 flex w-full justify-center px-2 sm:bottom-6 sm:px-3"
     >
-      <div className="pointer-events-auto relative max-w-[calc(100vw-1rem)] overflow-hidden rounded-full border border-white/14 bg-[rgba(10,12,17,0.42)] p-1 shadow-nav-glass backdrop-blur-2xl sm:max-w-full sm:p-1.5">
+      <div
+        className="pointer-events-auto relative max-w-[calc(100vw-1rem)] overflow-hidden rounded-full p-1 sm:max-w-full sm:p-1.5"
+        style={{
+          border: '1px solid var(--c-glass-border)',
+          background: theme === 'dark' ? 'rgba(10,12,17,0.42)' : 'rgba(255,255,255,0.88)',
+          boxShadow: 'var(--shadow-nav)',
+          backdropFilter: theme === 'dark' ? 'blur(24px)' : 'none',
+          WebkitBackdropFilter: theme === 'dark' ? 'blur(24px)' : 'none',
+        }}
+      >
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 rounded-full bg-[linear-gradient(180deg,rgba(255,255,255,0.18),rgba(255,255,255,0.045)_42%,rgba(0,0,0,0.12))]"
+          className="pointer-events-none absolute inset-0 rounded-full"
+          style={{
+            background: theme === 'dark'
+              ? 'linear-gradient(180deg,rgba(255,255,255,0.18),rgba(255,255,255,0.045) 42%,rgba(0,0,0,0.12))'
+              : 'linear-gradient(180deg,rgba(255,255,255,0.9),rgba(255,255,255,0.6) 42%,rgba(0,0,0,0.02))',
+          }}
         />
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute inset-px rounded-full border border-black/18"
+          className="pointer-events-none absolute inset-px rounded-full"
+          style={{ border: theme === 'dark' ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(0,0,0,0.06)' }}
         />
         <nav
           aria-label="Primary"
@@ -94,9 +132,20 @@ const SiteNav = ({ page, navigate }) => {
               href={`${BASE}/`}
               onClick={goHome}
               aria-current={page === 'home' ? 'page' : undefined}
-              className={`${linkBase} ${page === 'home' ? 'text-white' : 'text-white/70 hover:text-white/90'}`}
+              className={`${linkBase} ${page === 'home' ? '' : ''}`}
+              style={{
+                color: page === 'home' ? 'var(--c-text)' : 'var(--c-text-sec)',
+              }}
             >
-              {page === 'home' && <span className={activePill} />}
+              {page === 'home' && (
+                <span
+                  className={activePill}
+                  style={{
+                    borderColor: 'var(--c-border)',
+                    background: 'var(--c-accent-soft)',
+                  }}
+                />
+              )}
               <span className="relative z-10 flex items-center justify-center gap-1.5 sm:gap-2">
                 <span
                   aria-hidden="true"
@@ -126,9 +175,20 @@ const SiteNav = ({ page, navigate }) => {
               href={`${BASE}/work`}
               onClick={goWork}
               aria-current={page === 'work' ? 'page' : undefined}
-              className={`${linkBase} ${page === 'work' ? 'text-white' : 'text-white/70 hover:text-white/90'}`}
+              className={`${linkBase} ${page === 'work' ? '' : ''}`}
+              style={{
+                color: page === 'work' ? 'var(--c-text)' : 'var(--c-text-sec)',
+              }}
             >
-              {page === 'work' && <span className={activePill} />}
+              {page === 'work' && (
+                <span
+                  className={activePill}
+                  style={{
+                    borderColor: 'var(--c-border)',
+                    background: 'var(--c-accent-soft)',
+                  }}
+                />
+              )}
               <span className="relative z-10 flex items-center justify-center gap-1.5 sm:gap-2">
                 <img
                   src={PICKAXE}
@@ -142,7 +202,7 @@ const SiteNav = ({ page, navigate }) => {
             </a>
           </div>
 
-          <span aria-hidden="true" className="h-7 w-px shrink-0 bg-white/10" />
+          <span aria-hidden="true" className="h-7 w-px shrink-0" style={{ background: 'var(--c-border)' }} />
 
           <div className="flex shrink-0 items-center gap-0.5 pr-0.5 sm:gap-1 sm:pr-1">
             {socials.map((social) => {
@@ -151,7 +211,8 @@ const SiteNav = ({ page, navigate }) => {
                 <a
                   key={social.label}
                   aria-label={social.aria}
-                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-white/68 transition-colors duration-150 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 sm:h-11 sm:w-11"
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 sm:h-11 sm:w-11"
+                  style={{ color: 'var(--c-text-sec)' }}
                   href={social.href}
                   rel="noreferrer"
                   target="_blank"
@@ -163,6 +224,21 @@ const SiteNav = ({ page, navigate }) => {
               )
             })}
           </div>
+
+          <span aria-hidden="true" className="h-7 w-px shrink-0" style={{ background: 'var(--c-border)' }} />
+
+          <button
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors duration-200 hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 sm:h-11 sm:w-11"
+            style={{ color: 'var(--c-text)' }}
+          >
+            {theme === 'dark' ? (
+              <SunIcon className="h-4 w-4 sm:h-5 sm:w-5" />
+            ) : (
+              <MoonIcon className="h-4 w-4 sm:h-5 sm:w-5" />
+            )}
+          </button>
         </nav>
       </div>
     </header>

@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState, useRef, Component } from 'react'
+import { ThemeProvider } from './ThemeContext'
 import SiteNav from './ohshin/SiteNav'
 import HomePage from './ohshin/HomePage'
 import WorkPage from './ohshin/WorkPage'
@@ -14,12 +15,13 @@ class ErrorBoundary extends Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="flex min-h-screen flex-col items-center justify-center bg-ink p-8 text-center font-mono text-fog">
+        <div className="flex min-h-screen flex-col items-center justify-center p-8 text-center font-mono" style={{ background: 'var(--c-bg)', color: 'var(--c-text)' }}>
           <h1 className="font-doto text-3xl font-black uppercase">Something went wrong</h1>
-          <p className="mt-4 text-white/60">Try refreshing the page.</p>
+          <p className="mt-4" style={{ color: 'var(--c-text-sec)' }}>Try refreshing the page.</p>
           <button
             onClick={() => window.location.reload()}
-            className="mt-6 rounded-full bg-white/10 px-6 py-2 text-sm uppercase tracking-widest text-white ring-1 ring-white/20 transition-colors hover:bg-white/20"
+            className="mt-6 rounded-full px-6 py-2 text-sm uppercase tracking-widest ring-1 transition-colors"
+            style={{ background: 'var(--c-surface)', color: 'var(--c-text)', ringColor: 'var(--c-border)' }}
           >
             Reload
           </button>
@@ -50,19 +52,20 @@ const getPath = () => {
 }
 
 const NotFound = () => (
-  <div className="flex min-h-screen flex-col items-center justify-center bg-ink p-8 text-center font-mono text-fog">
-    <h1 className="font-doto text-6xl font-black uppercase text-white/20">404</h1>
-    <p className="mt-4 text-white/60">Page not found.</p>
+  <div className="flex min-h-screen flex-col items-center justify-center p-8 text-center font-mono" style={{ background: 'var(--c-bg)', color: 'var(--c-text)' }}>
+    <h1 className="font-doto text-6xl font-black uppercase" style={{ color: 'var(--c-text-faint)' }}>404</h1>
+    <p className="mt-4" style={{ color: 'var(--c-text-sec)' }}>Page not found.</p>
     <a
       href={import.meta.env.BASE_URL}
-      className="mt-6 rounded-full bg-white/10 px-6 py-2 text-sm uppercase tracking-widest text-white ring-1 ring-white/20 transition-colors hover:bg-white/20"
+      className="mt-6 rounded-full px-6 py-2 text-sm uppercase tracking-widest ring-1 transition-colors"
+      style={{ background: 'var(--c-surface)', color: 'var(--c-text)', ringColor: 'var(--c-border)' }}
     >
       Go home
     </a>
   </div>
 )
 
-const App = () => {
+const AppInner = () => {
   const [page, setPage] = useState(getPath)
   const [pageKey, setPageKey] = useState(0)
   const mainRef = useRef(null)
@@ -103,7 +106,8 @@ const App = () => {
         ref={mainRef}
         id="main-content"
         tabIndex={-1}
-        className="bg-ink text-fog outline-none"
+        className="text-fog outline-none"
+        style={{ background: 'var(--c-bg)' }}
       >
         <ErrorBoundary>
           <div key={pageKey} className="page-enter">
@@ -117,5 +121,11 @@ const App = () => {
     </>
   )
 }
+
+const App = () => (
+  <ThemeProvider>
+    <AppInner />
+  </ThemeProvider>
+)
 
 export default App

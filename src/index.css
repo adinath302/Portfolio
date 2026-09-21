@@ -12,11 +12,6 @@
   --font-metric: 'Tektur', monospace;
   --font-mono: 'IBM Plex Mono', monospace;
 
-  /* ---------- shadows ---------- */
-  --shadow-nav-glass:
-    0 18px 60px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.22),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.06);
-
   /* ---------- animations ---------- */
   --animate-work-reveal: work-reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
   --animate-glass-breathe: glass-breathe 11s cubic-bezier(0.45, 0, 0.2, 1)
@@ -60,8 +55,113 @@
   }
 }
 
+/* ======== THEME TOKENS ======== */
 :root {
   --site-nav-height: 61px;
+
+  /* --- Light theme (base) — solid cards, real shadows --- */
+  --c-bg: #f7f6f3;
+  --c-bg-alt: #efeee9;
+
+  --c-surface: #ffffff;
+  --c-surface-hover: #ffffff;
+  --c-surface-strong: #ffffff;
+  --c-surface-strong-hover: #ffffff;
+
+  --c-text: #171717;
+  --c-text-sec: #525252;
+  --c-text-muted: #a3a3a3;
+  --c-text-faint: #d4d4d4;
+
+  --c-border: #e5e5e5;
+  --c-border-strong: #d4d4d4;
+
+  --c-accent: #d3170a;
+  --c-accent-soft: rgba(211, 23, 10, 0.07);
+  --c-accent-glow: rgba(211, 23, 10, 0.06);
+
+  --c-shadow: rgba(0, 0, 0, 0.06);
+  --c-shadow-strong: rgba(0, 0, 0, 0.1);
+
+  --c-scrim: rgba(247, 246, 243, 0.82);
+  --c-overlay: rgba(0, 0, 0, 0.025);
+
+  --c-glass-highlight: rgba(255, 255, 255, 0.9);
+  --c-glass-border: #e5e5e5;
+
+  /* Hero */
+  --hero-bg: radial-gradient(circle at 24% 18%, rgba(211,23,10,0.05), transparent 30%), radial-gradient(circle at 72% 76%, rgba(211,23,10,0.08), transparent 34%), radial-gradient(circle at 50% 120%, rgba(211,23,10,0.06), transparent 50%), linear-gradient(180deg, #e8e5df 0%, #f0ece6 55%, #ece6df 100%);
+  --hero-scrim: linear-gradient(180deg, rgba(247,246,243,0.7) 0%, rgba(247,246,243,0.1) 38%, rgba(247,246,243,0.85) 100%);
+  --hero-vignette: radial-gradient(ellipse_at_center, transparent 30%, rgba(0,0,0,0.18) 80%), radial-gradient(circle_at_72%_76%, rgba(211,23,10,0.08), transparent 38%);
+  --hero-scanline: repeating-linear-gradient(0deg, rgba(0,0,0,0.06) 0px, rgba(0,0,0,0.06) 1px, transparent 1px, transparent 4px), radial-gradient(circle_at_24%_18%, rgba(0,0,0,0.04), transparent 30%), radial-gradient(circle_at_72%_76%, rgba(211,23,10,0.06), transparent 34%);
+  --hero-grid: linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
+  --hero-dot: radial-gradient(rgba(0,0,0,0.5) 0.7px, transparent 0.7px);
+  --hero-beam: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+  --hero-text-shadow: 0 2px 12px rgba(255,255,255,0.6);
+  --hero-glow-bg: rgba(255, 255, 255, 0.3);
+
+  /* Panel shadows — real elevation, no glass inset */
+  --shadow-glass: 0 1px 2px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06), 0 24px 60px rgba(0,0,0,0.06);
+  --shadow-glass-lg: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.08), 0 32px 80px rgba(0,0,0,0.06);
+  --shadow-card: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.05);
+  --shadow-card-hover: 0 2px 4px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.08), 0 0 0 1px rgba(211,23,10,0.12);
+  --shadow-nav: 0 2px 8px rgba(0,0,0,0.08), 0 12px 40px rgba(0,0,0,0.1);
+
+  /* Chip hover glow */
+  --chip-shadow: 0 2px 8px rgba(211,23,10,0.1), 0 4px 16px rgba(0,0,0,0.06);
+  /* Reach card hover */
+  --reach-glow: 0 2px 4px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.08), 0 0 0 1px rgba(211,23,10,0.15);
+}
+
+.dark {
+  --c-bg: #000000;
+  --c-bg-alt: #0a0b10;
+
+  --c-surface: rgba(255, 255, 255, 0.045);
+  --c-surface-hover: rgba(255, 255, 255, 0.06);
+  --c-surface-strong: rgba(255, 255, 255, 0.075);
+  --c-surface-strong-hover: rgba(255, 255, 255, 0.09);
+
+  --c-text: #ffffff;
+  --c-text-sec: rgba(255, 255, 255, 0.62);
+  --c-text-muted: rgba(255, 255, 255, 0.42);
+  --c-text-faint: rgba(255, 255, 255, 0.3);
+
+  --c-border: rgba(255, 255, 255, 0.1);
+  --c-border-strong: rgba(255, 255, 255, 0.15);
+
+  --c-accent: #d3170a;
+  --c-accent-soft: rgba(211, 23, 10, 0.105);
+  --c-accent-glow: rgba(211, 23, 10, 0.14);
+
+  --c-shadow: rgba(0, 0, 0, 0.26);
+  --c-shadow-strong: rgba(0, 0, 0, 0.34);
+
+  --c-scrim: rgba(0, 0, 0, 0.6);
+  --c-overlay: rgba(255, 255, 255, 0.05);
+
+  --c-glass-highlight: rgba(255, 255, 255, 0.14);
+  --c-glass-border: rgba(255, 255, 255, 0.12);
+
+  /* Hero */
+  --hero-bg: radial-gradient(circle at 24% 18%, rgba(255,255,255,0.07), transparent 30%), radial-gradient(circle at 72% 76%, rgba(211,23,10,0.18), transparent 34%), radial-gradient(circle at 50% 120%, rgba(211,23,10,0.22), transparent 50%), linear-gradient(180deg, #05060a 0%, #0a0b10 55%, #120b09 100%);
+  --hero-scrim: linear-gradient(180deg, rgba(3,4,8,0.55) 0%, rgba(3,4,8,0.26) 38%, rgba(3,4,8,0.82) 100%);
+  --hero-vignette: radial-gradient(ellipse_at_center, transparent 30%, rgba(0,0,0,0.46) 80%), radial-gradient(circle_at_72%_76%, rgba(211,23,10,0.16), transparent 38%);
+  --hero-scanline: repeating-linear-gradient(0deg, rgba(255,255,255,0.16) 0px, rgba(255,255,255,0.16) 1px, transparent 1px, transparent 4px), radial-gradient(circle_at_24%_18%, rgba(255,255,255,0.18), transparent 30%), radial-gradient(circle_at_72%_76%, rgba(211,23,10,0.22), transparent 34%);
+  --hero-grid: linear-gradient(rgba(255,255,255,0.16) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.16) 1px, transparent 1px);
+  --hero-dot: radial-gradient(rgba(255,255,255,0.95) 0.7px, transparent 0.7px);
+  --hero-beam: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+  --hero-text-shadow: 0 0 16px rgba(255,255,255,0.16);
+  --hero-glow-bg: rgba(0, 0, 0, 0.58);
+
+  --shadow-glass: 0 24px 90px rgba(0,0,0,0.26), 0 0 52px rgba(211,23,10,0.14), inset 0 1px 0 rgba(255,255,255,0.12);
+  --shadow-glass-lg: 0 30px 120px rgba(0,0,0,0.42), 0 0 74px rgba(211,23,10,0.16), inset 0 1px 0 rgba(255,255,255,0.14);
+  --shadow-card: 0 12px 38px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.08);
+  --shadow-card-hover: 0 18px 50px rgba(0,0,0,0.34), 0 0 40px rgba(211,23,10,0.18), inset 0 1px 0 rgba(255,255,255,0.12);
+  --shadow-nav: 0 18px 60px rgba(0,0,0,0.34), inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -1px 0 rgba(255,255,255,0.06);
+
+  --chip-shadow: 0 0 18px rgba(211,23,10,0.25), 0 4px 12px rgba(0,0,0,0.2);
+  --reach-glow: 0 22px 80px rgba(0,0,0,0.28), 0 0 60px rgba(211,23,10,0.3), inset 0 1px 0 rgba(255,255,255,0.11);
 }
 
 html {
@@ -71,12 +171,13 @@ html {
 }
 
 body {
-  background-color: var(--color-ink);
-  color: var(--color-fog);
+  background-color: var(--c-bg);
+  color: var(--c-text);
   font-family: var(--font-mono);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   overscroll-behavior-y: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* ---------- scroll-snap (home page) ---------- */
@@ -244,7 +345,7 @@ body {
 }
 .chip-hover:hover {
   transform: scale(1.08);
-  box-shadow: 0 0 18px rgba(211, 23, 10, 0.25), 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--chip-shadow);
 }
 
 /* ---------- reach card hover glow ---------- */
@@ -252,7 +353,7 @@ body {
   transition: box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reach-card-glow:hover {
-  box-shadow: 0 22px 80px rgba(0, 0, 0, 0.28), 0 0 60px rgba(211, 23, 10, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.11);
+  box-shadow: var(--reach-glow);
   transform: translateY(-2px);
 }
 
@@ -323,7 +424,7 @@ body {
 
   /* lighten heavy shadows that repaint on scroll */
   [class*="shadow-"] {
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+    box-shadow: 0 8px 32px var(--c-shadow) !important;
   }
 
   /* GPU-accelerate all scrollable containers */
@@ -334,4 +435,16 @@ body {
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
   }
+}
+
+/* ---------- light theme overrides ---------- */
+:not(.dark) .backdrop-blur-2xl {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Subtle top-edge highlight on light panels for definition */
+:not(.dark) [style*="var(--shadow-glass)"],
+:not(.dark) [style*="var(--shadow-glass-lg)"] {
+  border-top: 1px solid rgba(255, 255, 255, 0.8);
 }

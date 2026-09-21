@@ -11,11 +11,15 @@ const WorkPage = () => {
   return (
     <section
       id="projects"
-      className="relative isolate min-h-screen overflow-hidden bg-ink text-fog"
+      className="relative isolate min-h-screen overflow-hidden"
+      style={{ background: 'var(--c-bg)', color: 'var(--c-text)' }}
     >
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_18%_12%,rgba(211,23,10,0.12),transparent_30%),radial-gradient(circle_at_78%_72%,rgba(255,255,255,0.05),transparent_30%)]"
+        className="absolute inset-0 -z-20"
+        style={{
+          background: 'radial-gradient(circle_at_18%_12%,rgba(211,23,10,0.06),transparent_30%),radial-gradient(circle_at_78%_72%,var(--c-overlay),transparent_30%)',
+        }}
       />
 
 

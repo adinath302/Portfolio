@@ -28,7 +28,7 @@ const CARD_ICONS = {
 }
 
 const cardBase =
-  'reach-card-glow relative isolate grid min-h-[11rem] min-w-0 overflow-hidden rounded-[1.5rem] bg-white/[0.05] px-4 py-4 shadow-[0_22px_80px_rgba(0,0,0,0.28),0_0_44px_rgba(211,23,10,0.12),inset_0_1px_0_rgba(255,255,255,0.11)] ring-1 ring-white/10 motion-safe:animate-work-reveal sm:min-h-[13rem] sm:rounded-[1.75rem] sm:px-6 sm:py-5'
+  'reach-card-glow relative isolate grid min-h-[11rem] min-w-0 overflow-hidden rounded-[1.5rem] px-4 py-4 motion-safe:animate-work-reveal sm:min-h-[13rem] sm:rounded-[1.75rem] sm:px-6 sm:py-5'
 
 const delays = ['220ms', '300ms', '380ms']
 
@@ -39,22 +39,28 @@ const StatCard = ({ card, index }) => {
     <>
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 opacity-60 [background:radial-gradient(circle_at_18%_18%,rgba(255,255,255,.10),transparent_34%),radial-gradient(circle_at_80%_90%,rgba(211,23,10,.24),transparent_42%)]"
+        className="pointer-events-none absolute inset-0 -z-10 opacity-60"
+        style={{
+          background: 'radial-gradient(circle_at_18%_18%,var(--c-overlay),transparent_34%),radial-gradient(circle_at_80%_90%,var(--c-accent-glow),transparent_42%)',
+        }}
       />
 
-      <div className="relative flex items-center justify-between gap-4 font-mono text-[0.74rem] uppercase tracking-[0.18em] text-white/56 sm:text-[0.82rem]">
+      <div className="relative flex items-center justify-between gap-4 font-mono text-[0.74rem] uppercase tracking-[0.18em] sm:text-[0.82rem]" style={{ color: 'var(--c-text-muted)' }}>
         <span className="flex items-center gap-2">
           <Icon />
           {card.icon}
         </span>
-        <span className="font-mono text-[0.58rem] text-accent">{card.index}</span>
+        <span className="font-mono text-[0.58rem]" style={{ color: 'var(--c-accent)' }}>{card.index}</span>
       </div>
 
       <div className="relative mt-10 min-w-0 overflow-hidden">
-        <p className="truncate font-metric text-[clamp(1.8rem,4.8vw,4.1rem)] font-semibold uppercase leading-none tracking-[-0.08em] text-white drop-shadow-[0_0_18px_rgba(255,255,255,0.26)]">
+        <p
+          className="truncate font-metric text-[clamp(1.8rem,4.8vw,4.1rem)] font-semibold uppercase leading-none tracking-[-0.08em]"
+          style={{ color: 'var(--c-text)', textShadow: '0 0 18px var(--c-accent-glow)' }}
+        >
           {card.metric}
         </p>
-        <div className="mt-3 flex items-center gap-2 font-mono text-[0.68rem] uppercase tracking-[0.18em] text-white/70">
+        <div className="mt-3 flex items-center gap-2 font-mono text-[0.68rem] uppercase tracking-[0.18em]" style={{ color: 'var(--c-text-sec)' }}>
           {card.metricLabel}
           {card.tooltip && (
             <span className="group/tooltip relative inline-flex">
@@ -62,11 +68,22 @@ const StatCard = ({ card, index }) => {
                 type="button"
                 aria-label="What is this?"
                 aria-describedby="reach-tooltip"
-                className="inline-flex h-5 w-5 items-center justify-center rounded-full text-white/45 transition-colors duration-200 hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/35"
+                className="inline-flex h-5 w-5 items-center justify-center rounded-full transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1"
+                style={{ color: 'var(--c-text-muted)' }}
               >
                 <InfoIcon />
               </button>
-              <span id="reach-tooltip" role="tooltip" className="pointer-events-none absolute bottom-[calc(100%+0.55rem)] left-1/2 z-20 w-52 -translate-x-1/2 rounded-xl border border-white/12 bg-theme-black/90 px-3 py-2 font-mono text-[0.58rem] normal-case leading-4 tracking-normal text-white/72 opacity-0 shadow-[0_18px_60px_rgba(0,0,0,0.38)] backdrop-blur-xl transition duration-200 group-hover/tooltip:opacity-100 group-focus-within/tooltip:opacity-100">
+              <span
+                id="reach-tooltip"
+                role="tooltip"
+                className="pointer-events-none absolute bottom-[calc(100%+0.55rem)] left-1/2 z-20 w-52 -translate-x-1/2 rounded-xl px-3 py-2 font-mono text-[0.58rem] normal-case leading-4 tracking-normal opacity-0 backdrop-blur-xl transition duration-200 group-hover/tooltip:opacity-100 group-focus-within/tooltip:opacity-100"
+                style={{
+                  border: '1px solid var(--c-border)',
+                  background: 'var(--c-bg)',
+                  color: 'var(--c-text-sec)',
+                  boxShadow: '0 18px 60px var(--c-shadow-strong)',
+                }}
+              >
                 {reach.tooltip}
               </span>
             </span>
@@ -83,7 +100,12 @@ const StatCard = ({ card, index }) => {
         target="_blank"
         rel="noreferrer"
         className={cardBase}
-        style={{ animationDelay: delays[index] }}
+        style={{
+          background: 'var(--c-surface)',
+          boxShadow: '0 22px 80px var(--c-shadow), 0 0 44px var(--c-accent-glow), inset 0 1px 0 var(--c-glass-highlight)',
+          border: '1px solid var(--c-border)',
+          animationDelay: delays[index],
+        }}
       >
         {inner}
       </a>
@@ -91,7 +113,15 @@ const StatCard = ({ card, index }) => {
   }
 
   return (
-    <div className={cardBase} style={{ animationDelay: delays[index] }}>
+    <div
+      className={cardBase}
+      style={{
+        background: 'var(--c-surface)',
+        boxShadow: '0 22px 80px var(--c-shadow), 0 0 44px var(--c-accent-glow), inset 0 1px 0 var(--c-glass-highlight)',
+        border: '1px solid var(--c-border)',
+        animationDelay: delays[index],
+      }}
+    >
       {inner}
     </div>
   )
@@ -100,17 +130,24 @@ const StatCard = ({ card, index }) => {
 const ReachPanel = () => {
   return (
     <div className="motion-safe:animate-work-reveal py-10 [animation-delay:160ms] lg:py-12">
-      <div className="relative isolate overflow-hidden rounded-[2.5rem] bg-white/[0.045] p-5 shadow-[0_30px_120px_rgba(0,0,0,0.30),0_0_74px_rgba(211,23,10,0.18),inset_0_1px_0_rgba(255,255,255,0.14)] ring-1 ring-white/12 backdrop-blur-2xl motion-safe:animate-glass-breathe sm:p-7">
-
+      <div
+        className="relative isolate overflow-hidden rounded-[2.5rem] p-5 backdrop-blur-2xl motion-safe:animate-glass-breathe sm:p-7"
+        style={{
+          background: 'var(--c-surface)',
+          boxShadow: 'var(--shadow-glass-lg)',
+          border: '1px solid var(--c-border-strong)',
+        }}
+      >
 
         <div className="flex items-end justify-between gap-4">
           <h2
             data-text="reach"
-            className="glitch-hover font-doto text-[2.25rem] font-black uppercase leading-none tracking-normal text-white sm:text-[4.5rem]"
+            className="glitch-hover font-doto text-[2.25rem] font-black uppercase leading-none tracking-normal sm:text-[4.5rem]"
+            style={{ color: 'var(--c-text)' }}
           >
             {reach.title}
           </h2>
-          <p className="font-mono text-[0.58rem] uppercase tracking-[0.2em] text-accent sm:text-[0.62rem] sm:tracking-[0.28em]">
+          <p className="font-mono text-[0.58rem] uppercase tracking-[0.2em] sm:text-[0.62rem] sm:tracking-[0.28em]" style={{ color: 'var(--c-accent)' }}>
             {reach.label}
           </p>
         </div>
